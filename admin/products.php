@@ -47,29 +47,45 @@ if (!$user->isLogedin()) {
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $user->query("SELECT * FROM products");
+                                    $user->query("
+    SELECT p.*, 
+           (SELECT image 
+            FROM product_images 
+            WHERE product_id = p.id 
+            ORDER BY id ASC 
+            LIMIT 1) AS first_image
+    FROM products p
+");
                                     $products = $user->fetchAll();
                                     foreach ($products as $index => $product):
                                     ?>
                                         <tr>
                                             <th scope="row"><?php echo ++$index; ?></th>
                                             <td>
-                                                <img src="../assets/uploads/products/<?php echo $product['image']; ?>" alt="<?php echo $product['title']; ?>" width="50">
+                                                <?php if (!empty($product['first_image'])): ?>
+                                                    <img src="../assets/uploads/products/<?php echo $product['first_image']; ?>"
+                                                        alt="<?php echo htmlspecialchars($product['title']); ?>" width="50">
+                                                <?php else: ?>
+                                                    <span>No image</span>
+                                                <?php endif; ?>
                                             </td>
-                                            <td><?php echo $product['title']; ?></td>
-                                            <td><?php echo $product['price']; ?></td>
-                                            <td><?php echo $product['del_price']; ?></td>
+                                            <td><?php echo htmlspecialchars($product['title']); ?></td>
+                                            <td><?php echo htmlspecialchars($product['price']); ?></td>
+                                            <td><?php echo htmlspecialchars($product['del_price']); ?></td>
                                             <td>
                                                 <a href="edit-product.php?id=<?php echo (int)$product['id']; ?>" class="btn btn-sm btn-primary" title="Edit">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
-                                                <a href="action/product.action.php?deleteProduct&product_id=<?php echo (int)$product['id']; ?>" class="btn btn-sm btn-danger" title="Delete" onclick="return confirm('Are you sure you want to delete this product?');">
+                                                <a href="action/product.action.php?deleteProduct&product_id=<?php echo (int)$product['id']; ?>"
+                                                    class="btn btn-sm btn-danger"
+                                                    title="Delete"
+                                                    onclick="return confirm('Are you sure you want to delete this product?');">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
                                             </td>
                                         </tr>
-
                                     <?php endforeach; ?>
+
 
                                 </tbody>
                             </table>

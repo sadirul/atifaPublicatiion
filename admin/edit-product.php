@@ -19,12 +19,17 @@ $product_id = intval($_GET['id']);
 // Fetch product data
 $user->query("SELECT * FROM products WHERE id = :id");
 $user->bind(':id', $product_id);
-$product = $user->fetchOne(); // You need to implement this method in your User class
+$product = $user->fetchOne();
 if (!$product) {
     $user->set_alert("Product not found.", 'error');
     $user->redirect('products.php');
     exit();
 }
+
+// Fetch product images
+$user->query("SELECT * FROM product_images WHERE product_id = :pid");
+$user->bind(':pid', $product_id);
+$images = $user->fetchAll();
 ?>
 <?php include 'include/head.inc.php'; ?>
 <?php include 'include/sidebar.inc.php'; ?>
@@ -80,18 +85,33 @@ if (!$product) {
                             </div>
 
                             <div class="form-group">
-                                <label for="product-image">Product Image</label>
+                                <label for="product-image">Upload New Images</label>
                                 <input type="file" class="form-control input-shadow bg-white"
-                                    id="product-image" name="image">
-                                <small class="text-muted">Leave blank if you don't want to change the image</small>
-                                <?php if (!empty($product['image'])): ?>
-                                    <div class="mb-2">
-                                        <img src="../assets/uploads/products/<?php echo $product['image']; ?>" alt="Product Image" style="max-width:100px;">
-                                    </div>
-                                <?php endif; ?>
+                                    id="product-image" name="images[]" multiple>
+                                <small class="text-muted">Upload more images if needed (leave blank to keep existing ones)</small>
                             </div>
 
-                            <div class="form-group">
+                            <?php if ($images): ?>
+                                <div class="mt-3 d-flex flex-wrap" style="gap:15px;">
+                                    <?php foreach ($images as $img): ?>
+                                        <div style="position:relative; display:inline-block;">
+                                            <img src="../assets/uploads/products/<?php echo htmlspecialchars($img['image']); ?>"
+                                                 alt="Product Image"
+                                                 style="max-width:100px; border:1px solid #ccc; border-radius:4px;">
+
+                                            <!-- Delete Icon -->
+                                            <a href="action/product.action.php?deleteImage&id=<?php echo (int)$img['id']; ?>&product_id=<?php echo (int)$product_id; ?>"
+                                               onclick="return confirm('Are you sure you want to delete this image?');"
+                                               style="position:absolute; top:-8px; right:-8px; background:#dc3545; color:#fff;
+                                                      border-radius:50%; padding:3px 6px; text-decoration:none; font-size:12px;">
+                                                ✕
+                                            </a>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <div class="form-group mt-3">
                                 <label for="product-price">Price</label>
                                 <input type="number" step="0.01" class="form-control input-shadow bg-white"
                                     id="product-price" name="price"
@@ -106,8 +126,7 @@ if (!$product) {
                                     placeholder="Enter Original/Del Price"
                                     value="<?php echo htmlspecialchars($product['del_price']); ?>">
                             </div>
-                            <input type="hidden" name="editProduct">
-                            <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+
                             <div class="form-group">
                                 <button type="submit" class="btn btn-dark shadow-dark px-5">
                                     <i class="zmdi zmdi-edit"></i> Update Product
@@ -118,7 +137,6 @@ if (!$product) {
                 </div>
             </div>
         </div>
-
         <!--End Row-->
 
     </div>

@@ -221,23 +221,55 @@ if (!$product) {
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                 <!-- Product Image -->
-                <div class="space-y-4">
-                    <div class="relative rounded-3xl overflow-hidden shadow-2xl group">
-                        <div class="aspect-w-4 aspect-h-5 h-96 md:h-[500px] flex items-center justify-center p-0">
-                            <?php
-                            $image = $product['image'] ?? 'placeholder.png'; // fallback if no image
-                            ?>
-                            <img src="assets/uploads/products/<?= htmlspecialchars($image) ?>" alt="<?= htmlspecialchars($product['title']) ?>" class="w-full h-full rounded-3xl">
-                        </div>
-                        <?php if (!empty($product['is_bestseller'])): ?>
-                            <div class="absolute top-4 right-4">
-                                <span class="bg-gold-500 text-emerald-900 px-4 py-2 rounded-full text-sm font-bold shadow-lg animate-pulse-slow">
-                                    Bestseller
-                                </span>
-                            </div>
-                        <?php endif; ?>
-                    </div>
-                </div>
+                <!-- Product Image -->
+<div class="space-y-4">
+    <div class="relative rounded-3xl overflow-hidden shadow-2xl group">
+        <div class="aspect-w-4 aspect-h-5 h-96 md:h-[500px] flex items-center justify-center p-0">
+            <?php
+            // Fetch all images for this product
+            $user->query("SELECT image FROM product_images WHERE product_id = :pid ORDER BY id ASC");
+            $user->bind(':pid', $product['id']);
+            $images = $user->fetchAll();
+
+            // If no images in product_images, fallback to product image
+            if (!$images) {
+                $images[] = ['image' => $product['image'] ?? 'placeholder.png'];
+            }
+
+            // Main image (first image)
+            $mainImage = $images[0]['image'];
+            ?>
+            <img id="mainProductImage" src="assets/uploads/products/<?= htmlspecialchars($mainImage) ?>" alt="<?= htmlspecialchars($product['title']) ?>" class="w-full h-full rounded-3xl object-cover">
+        </div>
+        <?php if (!empty($product['is_bestseller'])): ?>
+            <div class="absolute top-4 right-4">
+                <span class="bg-gold-500 text-emerald-900 px-4 py-2 rounded-full text-sm font-bold shadow-lg animate-pulse-slow">
+                    Bestseller
+                </span>
+            </div>
+        <?php endif; ?>
+    </div>
+
+    <!-- Thumbnails -->
+    <div class="flex space-x-4 overflow-x-auto">
+        <?php foreach ($images as $img): ?>
+            <div class="flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 border-gray-200 cursor-pointer hover:border-emerald-500 transition-all">
+                <img src="assets/uploads/products/<?= htmlspecialchars($img['image']) ?>" alt="<?= htmlspecialchars($product['title']) ?>" class="w-full h-full object-cover thumbnail-image">
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+
+<script>
+    // Change main image when a thumbnail is clicked
+    document.querySelectorAll('.thumbnail-image').forEach(function(thumbnail) {
+        thumbnail.addEventListener('click', function() {
+            const mainImage = document.getElementById('mainProductImage');
+            mainImage.src = this.src;
+        });
+    });
+</script>
+
 
 
                 <!-- Product Information -->

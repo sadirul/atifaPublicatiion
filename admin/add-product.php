@@ -61,7 +61,7 @@ if (!$user->isLogedin()) {
                             <div class="form-group">
                                 <label for="product-image">Product Image</label>
                                 <input type="file" class="form-control input-shadow bg-white"
-                                    id="product-image" name="image">
+                                    id="product-image" name="image[]" multiple>
                             </div>
 
                             <div class="form-group">

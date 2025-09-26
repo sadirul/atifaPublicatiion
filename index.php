@@ -230,70 +230,71 @@ $user = new User();
             </div>
 
             <!-- Books Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                <?php
-                $user->query("SELECT * FROM `products`");
-                foreach ($user->fetchAll() as $row):
-                    $price = $row['price'];
-                    $delPrice = $row['del_price'] ?? null; // old price
-                    $isBestseller = $row['is_bestseller'] ?? 0;
-                    $rating = $row['rating'] ?? 5;
-                    $image = $row['image'] ?? 'placeholder.png'; // fallback image
-                ?>
-                    <div class="group cursor-pointer">
-                        <div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:scale-105 hover:-translate-y-2">
-                            <div class="h-72 relative overflow-hidden">
-                                <img src="assets/uploads/products/<?= htmlspecialchars($image) ?>" alt="<?= htmlspecialchars($row['title']) ?>" class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-black/10"></div>
-                                <div class="relative z-10 flex flex-col items-center justify-center h-full text-white p-6">
-                                    <div class="text-6xl mb-4 group-hover:scale-110 transition-transform">
-                                        <?= htmlspecialchars($row['icon'] ?? '📖') ?>
-                                    </div>
-                                    <div class="font-arabic text-2xl mb-2 text-center">
-                                        <?= htmlspecialchars($row['arabic_title'] ?? $row['title']) ?>
-                                    </div>
-                                    <div class="text-sm opacity-90"><?= htmlspecialchars($row['subtitle'] ?? '') ?></div>
-                                </div>
-                                <?php if ($isBestseller): ?>
-                                    <div class="absolute top-4 right-4">
-                                        <span class="bg-gold-500 text-emerald-900 px-3 py-1 rounded-full text-xs font-bold shadow-lg">
-                                            Bestseller
-                                        </span>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                            <div class="p-6">
-                                <h3 class="text-xl font-semibold text-gray-900 mb-2 group-hover:text-emerald-600 transition-colors">
-                                    <?= htmlspecialchars($row['title']) ?>
-                                </h3>
-                                <p class="text-sm text-gray-600 mb-4"><?= htmlspecialchars($row['description']) ?></p>
-                                <div class="flex items-center justify-between mb-4">
-                                    <div class="flex items-center space-x-2">
-                                        <span class="text-2xl font-bold text-emerald-600">₹<?= number_format($price, 2) ?></span>
-                                        <?php if ($delPrice): ?>
-                                            <span class="text-sm text-gray-500 line-through">₹<?= number_format($delPrice, 2) ?></span>
-                                        <?php endif; ?>
-                                    </div>
-                                    <div class="flex text-gold-400">
-                                        <span><?= str_repeat('★', $rating) ?><?= str_repeat('☆', 5 - $rating) ?></span>
-                                    </div>
-                                </div>
-                                <a href="product.php?product_id=<?php echo md5($row['id']) ?>" class="w-full bg-emerald-600 text-white py-3 px-4 rounded-2xl hover:bg-emerald-700 transition-all duration-300 font-medium group-hover:shadow-lg">
-                                    Buy Now
-                                </a>
-                            </div>
+           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+    <?php
+    // Fetch all products
+    $user->query("SELECT * FROM products");
+    $products = $user->fetchAll();
+
+    foreach ($products as $row):
+        $price = $row['price'];
+        $delPrice = $row['del_price'] ?? null;
+        $isBestseller = $row['is_bestseller'] ?? 0;
+        $rating = $row['rating'] ?? 5;
+
+        // Fetch first product image if exists
+        $user->query("SELECT image FROM product_images WHERE product_id = :pid ORDER BY id ASC LIMIT 1");
+        $user->bind(':pid', $row['id']);
+        $imgRow = $user->fetchOne();
+        $image = $imgRow['image'] ?? $row['image'] ?? 'placeholder.png';
+    ?>
+        <div class="group cursor-pointer">
+            <div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:scale-105 hover:-translate-y-2">
+                <div class="h-72 relative overflow-hidden">
+                    <img src="assets/uploads/products/<?= htmlspecialchars($image) ?>" alt="<?= htmlspecialchars($row['title']) ?>" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/10"></div>
+                    <div class="relative z-10 flex flex-col items-center justify-center h-full text-white p-6">
+                        <div class="text-6xl mb-4 group-hover:scale-110 transition-transform">
+                            <?= htmlspecialchars($row['icon'] ?? '📖') ?>
+                        </div>
+                        <div class="font-arabic text-2xl mb-2 text-center">
+                            <?= htmlspecialchars($row['arabic_title'] ?? $row['title']) ?>
+                        </div>
+                        <div class="text-sm opacity-90"><?= htmlspecialchars($row['subtitle'] ?? '') ?></div>
+                    </div>
+                    <?php if ($isBestseller): ?>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-gold-500 text-emerald-900 px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                                Bestseller
+                            </span>
+                        </div>
+                    <?php endif; ?>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2 group-hover:text-emerald-600 transition-colors">
+                        <?= htmlspecialchars($row['title']) ?>
+                    </h3>
+                    <p class="text-sm text-gray-600 mb-4"><?= htmlspecialchars($row['description']) ?></p>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-2xl font-bold text-emerald-600">₹<?= number_format($price, 2) ?></span>
+                            <?php if ($delPrice): ?>
+                                <span class="text-sm text-gray-500 line-through">₹<?= number_format($delPrice, 2) ?></span>
+                            <?php endif; ?>
+                        </div>
+                        <div class="flex text-gold-400">
+                            <span><?= str_repeat('★', $rating) ?><?= str_repeat('☆', 5 - $rating) ?></span>
                         </div>
                     </div>
-                <?php endforeach; ?>
+                    <a href="product.php?product_id=<?= md5($row['id']) ?>" class="w-full bg-emerald-600 text-white py-3 px-4 rounded-2xl hover:bg-emerald-700 transition-all duration-300 font-medium group-hover:shadow-lg">
+                        Buy Now
+                    </a>
+                </div>
             </div>
+        </div>
+    <?php endforeach; ?>
+</div>
 
-
-            <!-- View All Books Button -->
-            <!-- <div class="text-center mt-16">
-                <button class="px-12 py-4 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white font-semibold rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
-                    View All Books
-                </button>
-            </div> -->
         </div>
     </section>
 
@@ -365,7 +366,12 @@ $user = new User();
                     <div>
                         <span class="text-emerald-600 font-semibold text-lg mb-2 block">Our Mission</span>
                         <h2 class="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-6">Spreading Authentic Islamic Knowledge</h2>
-                        <p class="text-xl text-gray-600 leading-relaxed">We are dedicated to making authentic Islamic literature accessible to Muslims worldwide through carefully curated books from trusted scholars and publishers.</p>
+                        <p class="text-xl text-gray-600 leading-relaxed">
+                            <strong>Assalamu alaykum</strong><br>
+                            বই জ্ঞানের আলো,হৃদয়ের সঙ্গী। আমরা বইকে দেখি শ্রেষ্ঠ উপহার হিসেবে,চিন্তাকে সমৃদ্ধ করে,জীবনের দিগন্ত প্রসারিত করে। আতিফা পাবলিকেশন আপনাদের হাতে পৌঁছে দিচ্ছে সেই অনন্য উপহার- বই,সমগ্র ভারত জুড়ে।
+                            <br>
+                            🌹Cash on delivery 🚚 Free Delevery 🎁 
+                        </p>
                     </div>
 
                     <div class="grid grid-cols-2 gap-6">
@@ -477,8 +483,8 @@ $user = new User();
                                     <span class="text-white text-xl">📱</span>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-gray-900">Phone</h4>
-                                    <p class="text-gray-600">+91 9477081723</p>
+                                    <h4 class="font-semibold text-gray-900">Call + WhatsApp</h4>
+                                    <p class="text-gray-600"> +919477081723/+917003821823</p>
                                 </div>
                             </div>
 
@@ -512,10 +518,9 @@ $user = new User();
                     <div class="bg-gradient-to-br from-gold-50 to-gold-100 p-8 rounded-3xl">
                         <h3 class="text-xl font-bold text-gray-900 mb-4">Follow Us</h3>
                         <div class="flex space-x-4">
-                            <button class="w-12 h-12 bg-blue-500 text-white rounded-2xl hover:scale-110 transition-transform">f</button>
-                            <button class="w-12 h-12 bg-blue-400 text-white rounded-2xl hover:scale-110 transition-transform">t</button>
-                            <button class="w-12 h-12 bg-pink-500 text-white rounded-2xl hover:scale-110 transition-transform">ig</button>
-                            <button class="w-12 h-12 bg-red-500 text-white rounded-2xl hover:scale-110 transition-transform">yt</button>
+                            <a href="https://www.facebook.com/share/1EQ4svM5qE/" target="_blank" rel="noopener noreferrer">
+                                <button class="w-12 h-12 bg-blue-500 text-white rounded-2xl hover:scale-110 transition-transform">f</button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -538,7 +543,8 @@ $user = new User();
                             <p class="text-gray-400 text-sm">Islamic Literature & Knowledge</p>
                         </div>
                     </div>
-                    <p class="text-gray-300 mb-6 max-w-md">Dedicated to spreading authentic Islamic knowledge through carefully curated books from trusted scholars and publishers worldwide.</p>
+                    <p class="text-gray-300 mb-6 max-w-md">
+                        বই জ্ঞানের আলো,হৃদয়ের সঙ্গী। আমরা বইকে দেখি শ্রেষ্ঠ উপহার হিসেবে,চিন্তাকে সমৃদ্ধ করে,জীবনের দিগন্ত প্রসারিত করে। আতিফা পাবলিকেশন আপনাদের হাতে পৌঁছে দিচ্ছে সেই অনন্য উপহার- বই,সমগ্র ভারত জুড়ে।</p>
                     <!-- <div class="font-arabic text-gold-400 text-lg">
                         بارك الله فيكم
                     </div> -->
