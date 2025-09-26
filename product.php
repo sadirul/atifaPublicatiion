@@ -222,54 +222,43 @@ if (!$product) {
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                 <!-- Product Image -->
                 <!-- Product Image -->
-<div class="space-y-4">
-    <div class="relative rounded-3xl overflow-hidden shadow-2xl group">
-        <div class="aspect-w-4 aspect-h-5 h-96 md:h-[500px] flex items-center justify-center p-0">
-            <?php
-            // Fetch all images for this product
-            $user->query("SELECT image FROM product_images WHERE product_id = :pid ORDER BY id ASC");
-            $user->bind(':pid', $product['id']);
-            $images = $user->fetchAll();
+                <div class="space-y-4">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl group">
+                        <div class="aspect-w-4 aspect-h-5 h-96 md:h-[500px] flex items-center justify-center p-0">
+                            <?php
+                            // Fetch all images for this product
+                            $user->query("SELECT image FROM product_images WHERE product_id = :pid ORDER BY id ASC");
+                            $user->bind(':pid', $product['id']);
+                            $images = $user->fetchAll();
 
-            // If no images in product_images, fallback to product image
-            if (!$images) {
-                $images[] = ['image' => $product['image'] ?? 'placeholder.png'];
-            }
+                            // If no images in product_images, fallback to product image
+                            if (!$images) {
+                                $images[] = ['image' => $product['image'] ?? 'placeholder.png'];
+                            }
 
-            // Main image (first image)
-            $mainImage = $images[0]['image'];
-            ?>
-            <img id="mainProductImage" src="assets/uploads/products/<?= htmlspecialchars($mainImage) ?>" alt="<?= htmlspecialchars($product['title']) ?>" class="w-full h-full rounded-3xl object-cover">
-        </div>
-        <?php if (!empty($product['is_bestseller'])): ?>
-            <div class="absolute top-4 right-4">
-                <span class="bg-gold-500 text-emerald-900 px-4 py-2 rounded-full text-sm font-bold shadow-lg animate-pulse-slow">
-                    Bestseller
-                </span>
-            </div>
-        <?php endif; ?>
-    </div>
+                            // Main image (first image)
+                            $mainImage = $images[0]['image'];
+                            ?>
+                            <img id="mainProductImage" src="assets/uploads/products/<?= htmlspecialchars($mainImage) ?>" alt="<?= htmlspecialchars($product['title']) ?>" class="w-full h-full rounded-3xl object-cover">
+                        </div>
+                        <?php if (!empty($product['is_bestseller'])): ?>
+                            <div class="absolute top-4 right-4">
+                                <span class="bg-gold-500 text-emerald-900 px-4 py-2 rounded-full text-sm font-bold shadow-lg animate-pulse-slow">
+                                    Bestseller
+                                </span>
+                            </div>
+                        <?php endif; ?>
+                    </div>
 
-    <!-- Thumbnails -->
-    <div class="flex space-x-4 overflow-x-auto">
-        <?php foreach ($images as $img): ?>
-            <div class="flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 border-gray-200 cursor-pointer hover:border-emerald-500 transition-all">
-                <img src="assets/uploads/products/<?= htmlspecialchars($img['image']) ?>" alt="<?= htmlspecialchars($product['title']) ?>" class="w-full h-full object-cover thumbnail-image">
-            </div>
-        <?php endforeach; ?>
-    </div>
-</div>
-
-<script>
-    // Change main image when a thumbnail is clicked
-    document.querySelectorAll('.thumbnail-image').forEach(function(thumbnail) {
-        thumbnail.addEventListener('click', function() {
-            const mainImage = document.getElementById('mainProductImage');
-            mainImage.src = this.src;
-        });
-    });
-</script>
-
+                    <!-- Thumbnails -->
+                    <div class="flex space-x-4 overflow-x-auto">
+                        <?php foreach ($images as $img): ?>
+                            <div class="flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 border-gray-200 cursor-pointer hover:border-emerald-500 transition-all">
+                                <img src="assets/uploads/products/<?= htmlspecialchars($img['image']) ?>" alt="<?= htmlspecialchars($product['title']) ?>" class="w-full h-full object-cover thumbnail-image">
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
 
 
                 <!-- Product Information -->
@@ -378,7 +367,7 @@ if (!$product) {
                                     </div>
                                     <div>
                                         <h4 class="font-semibold text-gray-900"><?php echo $product['title']; ?></h4>
-                                        <p class="text-gray-600 text-sm"><?php echo $product['description']; ?></p>
+                                        <p class="text-gray-600 text-sm"><?php echo nl2br($product['description']); ?></p>
                                     </div>
                                 </div>
                                 <div class="text-right">
@@ -467,7 +456,7 @@ if (!$product) {
             <div class="bg-gray-50 rounded-3xl p-8">
                 <h3 class="text-2xl font-bold text-gray-900 mb-6">About This Book</h3>
                 <div class="prose prose-lg max-w-none text-gray-700 space-y-4">
-                    <p><?php echo $product['full_description']; ?></p>
+                    <p><?php echo nl2br($product['full_description']); ?></p>
                 </div>
             </div>
         </div>
@@ -492,6 +481,16 @@ if (!$product) {
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        // Change main image when a thumbnail is clicked
+        document.querySelectorAll('.thumbnail-image').forEach(function(thumbnail) {
+            thumbnail.addEventListener('click', function() {
+                const mainImage = document.getElementById('mainProductImage');
+                mainImage.src = this.src;
+            });
+        });
+    </script>
+
     <script>
         $(document).ready(function() {
 

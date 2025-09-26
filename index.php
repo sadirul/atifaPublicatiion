@@ -230,70 +230,72 @@ $user = new User();
             </div>
 
             <!-- Books Grid -->
-           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-    <?php
-    // Fetch all products
-    $user->query("SELECT * FROM products");
-    $products = $user->fetchAll();
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <?php
+                // Fetch all products
+                $user->query("SELECT * FROM products");
+                $products = $user->fetchAll();
 
-    foreach ($products as $row):
-        $price = $row['price'];
-        $delPrice = $row['del_price'] ?? null;
-        $isBestseller = $row['is_bestseller'] ?? 0;
-        $rating = $row['rating'] ?? 5;
+                foreach ($products as $row):
+                    $price = $row['price'];
+                    $delPrice = $row['del_price'] ?? null;
+                    $isBestseller = $row['is_bestseller'] ?? 0;
+                    $rating = $row['rating'] ?? 5;
 
-        // Fetch first product image if exists
-        $user->query("SELECT image FROM product_images WHERE product_id = :pid ORDER BY id ASC LIMIT 1");
-        $user->bind(':pid', $row['id']);
-        $imgRow = $user->fetchOne();
-        $image = $imgRow['image'] ?? $row['image'] ?? 'placeholder.png';
-    ?>
-        <div class="group cursor-pointer">
-            <div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:scale-105 hover:-translate-y-2">
-                <div class="h-72 relative overflow-hidden">
-                    <img src="assets/uploads/products/<?= htmlspecialchars($image) ?>" alt="<?= htmlspecialchars($row['title']) ?>" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-black/10"></div>
-                    <div class="relative z-10 flex flex-col items-center justify-center h-full text-white p-6">
-                        <div class="text-6xl mb-4 group-hover:scale-110 transition-transform">
-                            <?= htmlspecialchars($row['icon'] ?? '📖') ?>
+                    // Fetch first product image if exists
+                    $user->query("SELECT image FROM product_images WHERE product_id = :pid ORDER BY id ASC LIMIT 1");
+                    $user->bind(':pid', $row['id']);
+                    $imgRow = $user->fetchOne();
+                    $image = $imgRow['image'] ?? $row['image'] ?? 'placeholder.png';
+                ?>
+                    <div class="group cursor-pointer">
+                        <div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:scale-105 hover:-translate-y-2">
+                            <div class="h-72 relative overflow-hidden">
+                                <img src="assets/uploads/products/<?= htmlspecialchars($image) ?>" alt="<?= htmlspecialchars($row['title']) ?>" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-black/10"></div>
+                                <div class="relative z-10 flex flex-col items-center justify-center h-full text-white p-6">
+                                    <div class="text-6xl mb-4 group-hover:scale-110 transition-transform">
+                                        <?= htmlspecialchars($row['icon'] ?? '📖') ?>
+                                    </div>
+                                    <div class="font-arabic text-2xl mb-2 text-center">
+                                        <?= htmlspecialchars($row['arabic_title'] ?? $row['title']) ?>
+                                    </div>
+                                    <div class="text-sm opacity-90"><?= htmlspecialchars($row['subtitle'] ?? '') ?></div>
+                                </div>
+                                <?php if ($isBestseller): ?>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="bg-gold-500 text-emerald-900 px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                                            Bestseller
+                                        </span>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                            <div class="p-6">
+                                <a href="product.php?product_id=<?= md5($row['id']) ?>">
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-2 group-hover:text-emerald-600 transition-colors">
+                                        <?= htmlspecialchars($row['title']) ?>
+                                    </h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-4"><?= htmlspecialchars($row['description']) ?></p>
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-2xl font-bold text-emerald-600">₹<?= number_format($price, 2) ?></span>
+                                        <?php if ($delPrice): ?>
+                                            <span class="text-sm text-gray-500 line-through">₹<?= number_format($delPrice, 2) ?></span>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="flex text-gold-400">
+                                        <span><?= str_repeat('★', $rating) ?><?= str_repeat('☆', 5 - $rating) ?></span>
+                                    </div>
+                                </div>
+                                <a href="product.php?product_id=<?= md5($row['id']) ?>" class="w-full bg-emerald-600 text-white py-3 px-4 rounded-2xl hover:bg-emerald-700 transition-all duration-300 font-medium group-hover:shadow-lg">
+                                    Buy Now
+                                </a>
+                            </div>
                         </div>
-                        <div class="font-arabic text-2xl mb-2 text-center">
-                            <?= htmlspecialchars($row['arabic_title'] ?? $row['title']) ?>
-                        </div>
-                        <div class="text-sm opacity-90"><?= htmlspecialchars($row['subtitle'] ?? '') ?></div>
                     </div>
-                    <?php if ($isBestseller): ?>
-                        <div class="absolute top-4 right-4">
-                            <span class="bg-gold-500 text-emerald-900 px-3 py-1 rounded-full text-xs font-bold shadow-lg">
-                                Bestseller
-                            </span>
-                        </div>
-                    <?php endif; ?>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2 group-hover:text-emerald-600 transition-colors">
-                        <?= htmlspecialchars($row['title']) ?>
-                    </h3>
-                    <p class="text-sm text-gray-600 mb-4"><?= htmlspecialchars($row['description']) ?></p>
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="flex items-center space-x-2">
-                            <span class="text-2xl font-bold text-emerald-600">₹<?= number_format($price, 2) ?></span>
-                            <?php if ($delPrice): ?>
-                                <span class="text-sm text-gray-500 line-through">₹<?= number_format($delPrice, 2) ?></span>
-                            <?php endif; ?>
-                        </div>
-                        <div class="flex text-gold-400">
-                            <span><?= str_repeat('★', $rating) ?><?= str_repeat('☆', 5 - $rating) ?></span>
-                        </div>
-                    </div>
-                    <a href="product.php?product_id=<?= md5($row['id']) ?>" class="w-full bg-emerald-600 text-white py-3 px-4 rounded-2xl hover:bg-emerald-700 transition-all duration-300 font-medium group-hover:shadow-lg">
-                        Buy Now
-                    </a>
-                </div>
+                <?php endforeach; ?>
             </div>
-        </div>
-    <?php endforeach; ?>
-</div>
 
         </div>
     </section>
