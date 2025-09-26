@@ -78,7 +78,7 @@ if (!$user->isLogedin()) {
                                             <td>₹<?php echo $order['price']; ?></td>
                                             <td><?php echo $order['qty']; ?></td>
                                             <td>₹<?php echo number_format($order['total_amount'], 2); ?></td>
-                                            <td style="white-space: normal; word-wrap: break-word; word-break: break-word;">
+                                            <td>
                                                 <strong>Name</strong>: <?php echo htmlspecialchars($order['name']); ?><br>
                                                 <strong>Mobile</strong>:
                                                 <a href="tel:<?php echo htmlspecialchars($order['mobile']); ?>" style="white-space: nowrap;">
