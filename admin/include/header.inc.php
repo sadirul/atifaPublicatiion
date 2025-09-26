@@ -32,7 +32,9 @@
                         </a>
                     </li>
                     <li class="dropdown-divider"></li>
-                    <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li>
+                    <a href="settings.php">
+                        <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li>
+                    </a>
                     <li class="dropdown-divider"></li>
                     <a href="./action/logout.action.php">
                         <li class="dropdown-item text-danger"><i class="icon-power mr-2"></i> Logout</li>

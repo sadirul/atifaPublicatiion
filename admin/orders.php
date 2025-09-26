@@ -79,11 +79,16 @@ if (!$user->isLogedin()) {
                                             <td><?php echo $order['qty']; ?></td>
                                             <td>₹<?php echo number_format($order['total_amount'], 2); ?></td>
                                             <td style="white-space: normal; word-wrap: break-word; word-break: break-word;">
-
                                                 <strong>Name</strong>: <?php echo htmlspecialchars($order['name']); ?><br>
-                                                <strong>Mobile</strong>: <a href="tel:<?php echo htmlspecialchars($order['mobile']); ?>"><?php echo htmlspecialchars($order['mobile']); ?></a><br>
-                                                <strong>Address</strong>:<br> <?php echo htmlspecialchars($order['address']); ?>
+                                                <strong>Mobile</strong>:
+                                                <a href="tel:<?php echo htmlspecialchars($order['mobile']); ?>" style="white-space: nowrap;">
+                                                    <?php echo htmlspecialchars($order['mobile']); ?>
+                                                </a><br>
+                                                <strong>Address</strong>:<br> <?php echo htmlspecialchars($order['address']); ?><br>
+                                                <hr />
+                                                <strong>Date: </strong><?php echo $user->dateFormat('d M Y | h:i:s a', htmlspecialchars($order['created_at'])); ?>
                                             </td>
+
                                             <td class="space-x-2">
                                                 <?php if ($order['status'] === 'Pending') : ?>
                                                     <a href="action/order-status.action.php?status=Completed&id=<?php echo (int)$order['order_id']; ?>"
