@@ -21,7 +21,6 @@ if (!$product) {
     $user->redirect('index.php');
     exit();
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -29,419 +28,372 @@ if (!$product) {
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#059669">
     <link rel="icon" href="assets/static/images/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="assets/static/images/favicon.ico" type="image/x-icon">
-    <title><?php echo $product['title']; ?> - Quranghor Islamic Literature Store</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title><?php echo htmlspecialchars($product['title']); ?> - Quranghor Islamic Literature Store</title>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="assets/static/images/favicon.ico" type="image/x-icon">
-        <link rel="shortcut icon" href="assets/static/images/favicon.ico" type="image/x-icon">
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="<?php echo htmlspecialchars(substr($product['description'], 0, 160)); ?>">
+    <meta name="keywords" content="Islamic books, <?php echo htmlspecialchars($product['title']); ?>, Quranghor, Islamic literature, Hadith, Quran, Sahih al-Bukhari">
+    <meta name="author" content="Quranghor Islamic Literature Store">
 
-        <title><?php echo htmlspecialchars($product['title']); ?> - Quranghor Islamic Literature Store</title>
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="<?php echo htmlspecialchars($product['title']); ?>">
+    <meta property="og:description" content="<?php echo htmlspecialchars(substr($product['description'], 0, 160)); ?>">
+    <meta property="og:type" content="product">
+    <meta property="og:url" content="<?php echo 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>">
+    <meta property="og:image" content="<?php echo 'https://' . $_SERVER['HTTP_HOST'] . '/assets/uploads/products/' . htmlspecialchars($product['image']); ?>">
+    <meta property="og:site_name" content="Quranghor Islamic Literature Store">
 
-        <!-- SEO Meta Tags -->
-        <meta name="description" content="<?php echo htmlspecialchars(substr($product['description'], 0, 160)); ?>">
-        <meta name="keywords" content="Islamic books, <?php echo htmlspecialchars($product['title']); ?>, Quranghor, Islamic literature, Hadith, Quran, Sahih al-Bukhari">
-        <meta name="author" content="Quranghor Islamic Literature Store">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?php echo htmlspecialchars($product['title']); ?>">
+    <meta name="twitter:description" content="<?php echo htmlspecialchars(substr($product['description'], 0, 160)); ?>">
+    <meta name="twitter:image" content="<?php echo 'https://' . $_SERVER['HTTP_HOST'] . '/assets/uploads/products/' . htmlspecialchars($product['image']); ?>">
+    <meta name="twitter:site" content="@Quranghor">
 
-        <!-- Open Graph / Facebook -->
-        <meta property="og:title" content="<?php echo htmlspecialchars($product['title']); ?>">
-        <meta property="og:description" content="<?php echo htmlspecialchars(substr($product['description'], 0, 160)); ?>">
-        <meta property="og:type" content="product">
-        <meta property="og:url" content="<?php echo 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>">
-        <meta property="og:image" content="<?php echo 'https://' . $_SERVER['HTTP_HOST'] . '/assets/uploads/products/' . htmlspecialchars($product['image']); ?>">
-        <meta property="og:site_name" content="Quranghor Islamic Literature Store">
-
-        <!-- Twitter Card -->
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="<?php echo htmlspecialchars($product['title']); ?>">
-        <meta name="twitter:description" content="<?php echo htmlspecialchars(substr($product['description'], 0, 160)); ?>">
-        <meta name="twitter:image" content="<?php echo 'https://' . $_SERVER['HTTP_HOST'] . '/assets/uploads/products/' . htmlspecialchars($product['image']); ?>">
-        <meta name="twitter:site" content="@Quranghor">
-
-        <!-- WhatsApp & General Sharing -->
-        <meta name="theme-color" content="#10b981">
-
-        <!-- JSON-LD Structured Data for SEO -->
-        <script type="application/ld+json">
-            {
-                "@context": "https://schema.org/",
-                "@type": "Product",
-                "name": "<?php echo addslashes($product['title']); ?>",
-                "image": ["<?php echo 'https://' . $_SERVER['HTTP_HOST'] . '/assets/uploads/products/' . addslashes($product['image']); ?>"],
-                "description": "<?php echo addslashes($product['description']); ?>",
-                "sku": "<?php echo $product['id']; ?>",
-                "mpn": "<?php echo $product['id']; ?>",
-                "brand": {
-                    "@type": "Brand",
-                    "name": "Quranghor"
-                },
-                "offers": {
-                    "@type": "Offer",
-                    "url": "<?php echo 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>",
-                    "priceCurrency": "INR",
-                    "price": "<?php echo $product['price']; ?>",
-                    "availability": "https://schema.org/InStock",
-                    "itemCondition": "https://schema.org/NewCondition"
-                }
+    <!-- JSON-LD Structured Data for SEO -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org/",
+            "@type": "Product",
+            "name": "<?php echo addslashes($product['title']); ?>",
+            "image": ["<?php echo 'https://' . $_SERVER['HTTP_HOST'] . '/assets/uploads/products/' . addslashes($product['image']); ?>"],
+            "description": "<?php echo addslashes($product['description']); ?>",
+            "sku": "<?php echo $product['id']; ?>",
+            "mpn": "<?php echo $product['id']; ?>",
+            "brand": {
+                "@type": "Brand",
+                "name": "Quranghor"
+            },
+            "offers": {
+                "@type": "Offer",
+                "url": "<?php echo 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>",
+                "priceCurrency": "INR",
+                "price": "<?php echo $product['price']; ?>",
+                "availability": "https://schema.org/InStock",
+                "itemCondition": "https://schema.org/NewCondition"
             }
-        </script>
+        }
+    </script>
 
-        <!-- Fonts & Tailwind -->
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-
-        <!-- Tailwind Configuration (keep your existing) -->
-        <script>
-            tailwind.config = {
-                theme: {
-                    extend: {
-                        fontFamily: {
-                            'sans': ['Inter', 'system-ui', 'sans-serif'],
-                            'display': ['Poppins', 'sans-serif'],
-                            'arabic': ['Amiri', 'serif']
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'display': ['Poppins', 'sans-serif'],
+                        'arabic': ['Amiri', 'serif']
+                    },
+                    colors: {
+                        emerald: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            200: '#a7f3d0',
+                            300: '#6ee7b7',
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b'
                         },
-                        colors: {
-                            emerald: {
-                                50: '#ecfdf5',
-                                100: '#d1fae5',
-                                200: '#a7f3d0',
-                                300: '#6ee7b7',
-                                400: '#34d399',
-                                500: '#10b981',
-                                600: '#059669',
-                                700: '#047857',
-                                800: '#065f46',
-                                900: '#064e3b'
+                        gold: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            200: '#fde68a',
+                            300: '#fcd34d',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            800: '#92400e',
+                            900: '#78350f'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-in': 'fade-in 0.5s ease-out',
+                        'slide-up': 'slide-up 0.5s ease-out',
+                        'scale-in': 'scale-in 0.3s ease-out',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%,100%': {
+                                transform: 'translateY(0px)'
                             },
-                            gold: {
-                                50: '#fffbeb',
-                                100: '#fef3c7',
-                                200: '#fde68a',
-                                300: '#fcd34d',
-                                400: '#fbbf24',
-                                500: '#f59e0b',
-                                600: '#d97706',
-                                700: '#b45309',
-                                800: '#92400e',
-                                900: '#78350f'
+                            '50%': {
+                                transform: 'translateY(-8px)'
                             }
                         },
-                        animation: {
-                            'float': 'float 6s ease-in-out infinite',
-                            'fade-in': 'fade-in 0.5s ease-out',
-                            'slide-up': 'slide-up 0.5s ease-out',
-                            'scale-in': 'scale-in 0.3s ease-out',
-                            'pulse-slow': 'pulse 3s ease-in-out infinite'
+                        'fade-in': {
+                            '0%': {
+                                opacity: '0'
+                            },
+                            '100%': {
+                                opacity: '1'
+                            }
                         },
-                        keyframes: {
-                            float: {
-                                '0%,100%': {
-                                    transform: 'translateY(0px)'
-                                },
-                                '50%': {
-                                    transform: 'translateY(-10px)'
-                                }
+                        'slide-up': {
+                            '0%': {
+                                transform: 'translateY(16px)',
+                                opacity: '0'
                             },
-                            'fade-in': {
-                                '0%': {
-                                    opacity: '0'
-                                },
-                                '100%': {
-                                    opacity: '1'
-                                }
+                            '100%': {
+                                transform: 'translateY(0)',
+                                opacity: '1'
+                            }
+                        },
+                        'scale-in': {
+                            '0%': {
+                                transform: 'scale(0.95)',
+                                opacity: '0'
                             },
-                            'slide-up': {
-                                '0%': {
-                                    transform: 'translateY(20px)',
-                                    opacity: '0'
-                                },
-                                '100%': {
-                                    transform: 'translateY(0)',
-                                    opacity: '1'
-                                }
-                            },
-                            'scale-in': {
-                                '0%': {
-                                    transform: 'scale(0.95)',
-                                    opacity: '0'
-                                },
-                                '100%': {
-                                    transform: 'scale(1)',
-                                    opacity: '1'
-                                }
+                            '100%': {
+                                transform: 'scale(1)',
+                                opacity: '1'
                             }
                         }
+                    },
+                    fontSize: {
+                        'xs': ['0.75rem', {
+                            lineHeight: '1rem'
+                        }],
+                        'sm': ['0.875rem', {
+                            lineHeight: '1.25rem'
+                        }],
+                        'base': ['1rem', {
+                            lineHeight: '1.5rem'
+                        }],
+                        'lg': ['1.125rem', {
+                            lineHeight: '1.75rem'
+                        }],
+                        'xl': ['1.25rem', {
+                            lineHeight: '1.75rem'
+                        }],
+                        '2xl': ['1.5rem', {
+                            lineHeight: '2rem'
+                        }],
+                        '3xl': ['1.875rem', {
+                            lineHeight: '2.25rem'
+                        }],
+                        '4xl': ['2.25rem', {
+                            lineHeight: '2.5rem'
+                        }],
+                        '5xl': ['3rem', {
+                            lineHeight: '1'
+                        }],
                     }
                 }
             }
-        </script>
-    </head>
-
+        }
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body class="font-sans bg-gray-50 overflow-x-hidden">
     <!-- Header Navigation -->
-    <header class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <div class="flex items-center space-x-3 group">
-                    <div
-                        style="border-radius: 50%; padding: 1px;" class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                        <img src="assets/static/images/icon.png" alt="Quranghor Logo" class="w-full h-full rounded-full object-cover">
-                    </div>
+    <?php include('include/header.include.php') ?>
 
-                    <div>
-                        <h1 class="text-2xl font-display font-bold bg-gradient-to-r from-emerald-600 to-emerald-800 bg-clip-text text-transparent">Quranghor</h1>
-                        <p class="text-xs text-gray-500 -mt-1">Islamic Literature</p>
-                    </div>
-                </div>
-
-                <!-- Back to Store Button -->
-                <div class="flex items-center space-x-4">
-                    <a href="index.php" class="px-4 py-2 text-emerald-600 hover:text-emerald-700 font-medium transition-all duration-200 flex items-center space-x-2">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                        </svg>
-                        <span>Back to Store</span>
-                    </a>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <!-- Bottom Navigation for Mobile -->
+    <?php include('include/bottom-navigation.include.php') ?>
 
     <!-- Product Details Section -->
-    <section class="pt-24 pb-12 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-                <!-- Product Image -->
+    <section class="pt-20 pb-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- Product Image -->
                 <div class="space-y-4">
-                    <div class="relative rounded-3xl overflow-hidden shadow-2xl group">
-                        <div class="aspect-w-4 aspect-h-5 h-96 md:h-[500px] flex items-center justify-center p-0">
+                    <div class="relative rounded-2xl overflow-hidden shadow-md group">
+                        <div class="aspect-w-4 aspect-h-5 h-80 sm:h-96 flex items-center justify-center">
                             <?php
-                            // Fetch all images for this product
                             $user->query("SELECT image FROM product_images WHERE product_id = :pid ORDER BY id ASC");
                             $user->bind(':pid', $product['id']);
                             $images = $user->fetchAll();
-
-                            // If no images in product_images, fallback to product image
                             if (!$images) {
                                 $images[] = ['image' => $product['image'] ?? 'placeholder.png'];
                             }
-
-                            // Main image (first image)
                             $mainImage = $images[0]['image'];
                             ?>
-                            <img id="mainProductImage" src="assets/uploads/products/<?= htmlspecialchars($mainImage) ?>" alt="<?= htmlspecialchars($product['title']) ?>" class="w-full h-full rounded-3xl object-cover">
+                            <img id="mainProductImage" src="assets/uploads/products/<?= htmlspecialchars($mainImage) ?>" alt="<?= htmlspecialchars($product['title']) ?>" class="w-full h-full rounded-2xl object-cover lazy" data-src="assets/uploads/products/<?= htmlspecialchars($mainImage) ?>">
                         </div>
                         <?php if (!empty($product['is_bestseller'])): ?>
-                            <div class="absolute top-4 right-4">
-                                <span class="bg-gold-500 text-emerald-900 px-4 py-2 rounded-full text-sm font-bold shadow-lg animate-pulse-slow">
+                            <div class="absolute top-3 right-3">
+                                <span class="bg-gold-500 text-emerald-900 px-3 py-1 rounded-full text-xs font-bold shadow-md animate-pulse-slow">
                                     Bestseller
                                 </span>
                             </div>
                         <?php endif; ?>
                     </div>
-
                     <!-- Thumbnails -->
-                    <div class="flex space-x-4 overflow-x-auto">
+                    <div class="flex space-x-3 overflow-x-auto py-2">
                         <?php foreach ($images as $img): ?>
-                            <div class="flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 border-gray-200 cursor-pointer hover:border-emerald-500 transition-all">
-                                <img src="assets/uploads/products/<?= htmlspecialchars($img['image']) ?>" alt="<?= htmlspecialchars($product['title']) ?>" class="w-full h-full object-cover thumbnail-image">
+                            <div class="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 cursor-pointer hover:border-emerald-500 transition-all">
+                                <img src="assets/uploads/products/<?= htmlspecialchars($img['image']) ?>" alt="<?= htmlspecialchars($product['title']) ?>" class="w-full h-full object-cover thumbnail-image lazy" data-src="assets/uploads/products/<?= htmlspecialchars($img['image']) ?>">
                             </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
 
-
                 <!-- Product Information -->
-                <div class="space-y-8">
-                    <!-- Title and Rating -->
+                <div class="space-y-6">
                     <div>
-                        <h1 class="text-4xl font-display font-bold text-gray-900 mb-4"><?php echo $product['title']; ?></h1>
-                        <p class="text-xl text-gray-600 mb-4"><?php echo $product['description']; ?></p>
-
-                        <!-- Rating -->
-                        <div class="flex items-center space-x-4 mb-6">
-                            <div class="flex text-gold-400 text-lg">
+                        <h1 class="text-2xl sm:text-3xl font-display font-bold text-gray-900 mb-3"><?php echo htmlspecialchars($product['title']); ?></h1>
+                        <p class="text-sm sm:text-base text-gray-600 mb-3"><?php echo htmlspecialchars($product['description']); ?></p>
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="flex text-gold-400 text-base">
                                 <span>★★★★★</span>
                             </div>
-                            <!-- <span class="text-gray-600">(4.9/5 from 2,847 reviews)</span> -->
                         </div>
-
-                        <!-- Price -->
-                        <div class="flex items-center space-x-4 mb-8">
+                        <div class="flex items-center space-x-3 mb-4">
                             <?php
                             $price = $product['price'];
-                            $delPrice = $product['del_price'];
-
-                            // Calculate percentage off
-                            $percentageOff = 0;
-                            if ($delPrice > 0 && $delPrice > $price) {
-                                $percentageOff = round((($delPrice - $price) / $delPrice) * 100);
-                            }
+                            $delPrice = $product['del_price'] ?? 0;
+                            $percentageOff = $delPrice > $price ? round((($delPrice - $price) / $delPrice) * 100) : 0;
                             ?>
-                            <span class="text-4xl font-bold text-emerald-600">₹<?= number_format($price, 2) ?></span>
-
+                            <span class="text-2xl sm:text-3xl font-bold text-emerald-600">₹<?= number_format($price, 2) ?></span>
                             <?php if ($delPrice > $price): ?>
-                                <span class="text-xl text-gray-500 line-through">₹<?= number_format($delPrice, 2) ?></span>
-                                <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold">
+                                <span class="text-sm sm:text-base text-gray-500 line-through">₹<?= number_format($delPrice, 2) ?></span>
+                                <span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs font-semibold">
                                     <?= $percentageOff ?>% OFF
                                 </span>
                             <?php endif; ?>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Order Form Section -->
-    <section class="py-16 bg-gradient-to-br from-emerald-50 to-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
-                <!-- Form Header -->
-                <div class="bg-gradient-to-r from-emerald-600 to-emerald-700 px-8 py-6">
-                    <h2 class="text-3xl font-display font-bold text-white mb-2">Place Your Order</h2>
-                    <p class="text-emerald-100">Fill in your details to order Sahih al-Bukhari</p>
+    <section class="py-12 bg-gradient-to-br from-emerald-50 to-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="bg-gradient-to-r from-emerald-600 to-emerald-700 px-6 py-4">
+                    <h2 class="text-2xl sm:text-3xl font-display font-bold text-white mb-2">Place Your Order</h2>
+                    <p class="text-sm sm:text-base text-emerald-100">Fill in your details to order <?php echo htmlspecialchars($product['title']); ?></p>
                 </div>
                 <?php echo $user->get_alert(); ?>
-                <!-- Order Form -->
-                <form class="p-8 space-y-8" id="orderForm" action="action/buy.action.php" method="POST">
-                    <!-- Personal Information -->
+                <form class="p-6 space-y-6" id="orderForm" action="action/buy.action.php" method="POST">
                     <div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-6 flex items-center">
-                            <span class="w-8 h-8 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-sm font-bold mr-3">1</span>
+                        <h3 class="text-lg sm:text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                            <span class="w-6 h-6 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-sm font-bold mr-2">1</span>
                             Personal Information
                         </h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="grid grid-cols-1 gap-4">
                             <div>
-                                <label class="block text-sm font-semibold text-gray-900 mb-3">Full Name *</label>
-                                <input name="name" type="text" required class="w-full px-4 py-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-emerald-100 focus:border-emerald-500 transition-all" placeholder="Enter your full name">
+                                <label class="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">Full Name *</label>
+                                <input name="name" type="text" required class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-100 focus:border-emerald-500 transition-all" placeholder="Enter your full name">
                             </div>
                             <div>
-                                <label class="block text-sm font-semibold text-gray-900 mb-3">Mobile Number *</label>
-                                <input name="mobile" type="tel" required class="w-full px-4 py-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-emerald-100 focus:border-emerald-500 transition-all" placeholder="+91 XXXXX XXXXX">
+                                <label class="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">Mobile Number *</label>
+                                <input name="mobile" type="tel" required class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-100 focus:border-emerald-500 transition-all" placeholder="+91 XXXXX XXXXX">
                             </div>
-                            <div class="md:col-span-2">
-                                <label class="block text-sm font-semibold text-gray-900 mb-3">Email Address (optional)</label>
-                                <input name="email" type="email" class="w-full px-4 py-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-emerald-100 focus:border-emerald-500 transition-all" placeholder="your.email@example.com">
+                            <div>
+                                <label class="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">Email Address (optional)</label>
+                                <input name="email" type="email" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-100 focus:border-emerald-500 transition-all" placeholder="your.email@example.com">
                             </div>
                         </div>
                     </div>
-
-                    <!-- Delivery Address -->
                     <div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-6 flex items-center">
-                            <span class="w-8 h-8 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-sm font-bold mr-3">2</span>
+                        <h3 class="text-lg sm:text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                            <span class="w-6 h-6 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-sm font-bold mr-2">2</span>
                             Delivery Address
                         </h3>
-                        <div class="space-y-6">
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-900 mb-3">Street Address *</label>
-                                <textarea name="address" required class="w-full px-4 py-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-emerald-100 focus:border-emerald-500 transition-all" rows="3" placeholder="House/Flat No., Building, Street, Area"></textarea>
-                            </div>
+                        <div>
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">Street Address *</label>
+                            <textarea name="address" required class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-100 focus:border-emerald-500 transition-all" rows="3" placeholder="House/Flat No., Building, Street, Area"></textarea>
                         </div>
                     </div>
-
-                    <!-- Order Details -->
                     <div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-6 flex items-center">
-                            <span class="w-8 h-8 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-sm font-bold mr-3">3</span>
+                        <h3 class="text-lg sm:text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                            <span class="w-6 h-6 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-sm font-bold mr-2">3</span>
                             Order Details
                         </h3>
-                        <div class="bg-gray-50 rounded-xl p-6">
-                            <div class="flex items-center justify-between mb-6">
-                                <div class="flex items-center space-x-4">
-                                    <div class="w-16 h-16 bg-emerald-500 rounded-xl flex items-center justify-center text-white text-2xl">
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-12 h-12 bg-emerald-500 rounded-lg flex items-center justify-center text-white text-xl">
                                         📖
                                     </div>
                                     <div>
-                                        <h4 class="font-semibold text-gray-900"><?php echo $product['title']; ?></h4>
-                                        <p class="text-gray-600 text-sm"><?php echo nl2br($product['description']); ?></p>
+                                        <h4 class="font-semibold text-gray-900 text-sm sm:text-base"><?php echo htmlspecialchars($product['title']); ?></h4>
+                                        <p class="text-xs sm:text-sm text-gray-600 line-clamp-2"><?php echo htmlspecialchars($product['description']); ?></p>
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <div class="text-2xl font-bold text-emerald-600">₹<?php echo $product['price']; ?></div>
-                                    <div class="text-sm text-gray-500 line-through">₹<?php echo $product['del_price']; ?></div>
+                                    <div class="text-lg sm:text-xl font-bold text-emerald-600">₹<?php echo number_format($product['price'], 2); ?></div>
+                                    <?php if ($delPrice > $price): ?>
+                                        <div class="text-xs sm:text-sm text-gray-500 line-through">₹<?php echo number_format($delPrice, 2); ?></div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
-
                             <div class="flex items-center justify-between">
-                                <label class="block text-sm font-semibold text-gray-900">Quantity</label>
-                                <div class="flex items-center space-x-4">
-                                    <button type="button" class="quantity-btn minus w-10 h-10 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors font-bold">-</button>
-                                    <input type="number" name="qty" id="quantity" value="1" min="1" max="10" class="w-20 text-center py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                                    <button type="button" class="quantity-btn plus w-10 h-10 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors font-bold">+</button>
+                                <label class="block text-xs sm:text-sm font-semibold text-gray-900">Quantity</label>
+                                <div class="flex items-center space-x-3">
+                                    <button type="button" class="quantity-btn minus w-8 h-8 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors font-bold">-</button>
+                                    <input type="number" name="qty" id="quantity" value="1" min="1" max="10" class="w-16 text-center py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                                    <button type="button" class="quantity-btn plus w-8 h-8 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors font-bold">+</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Order Summary -->
-                    <div class="bg-emerald-50 rounded-xl p-6">
-                        <h4 class="font-semibold text-gray-900 mb-4">Order Summary</h4>
-                        <div class="space-y-3">
-                            <div class="flex justify-between">
+                    <div class="bg-emerald-50 rounded-lg p-4">
+                        <h4 class="font-semibold text-gray-900 mb-3 text-sm sm:text-base">Order Summary</h4>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-xs sm:text-sm">
                                 <span class="text-gray-600">Item Price</span>
-                                <span id="itemPrice" class="font-semibold"><?php echo $product['price']; ?></span>
+                                <span id="itemPrice">₹<?php echo number_format($product['price'], 2); ?></span>
                             </div>
-                            <div class="flex justify-between">
+                            <div class="flex justify-between text-xs sm:text-sm">
                                 <span class="text-gray-600">Quantity</span>
-                                <span id="summaryQuantity" class="font-semibold">1</span>
+                                <span id="summaryQuantity">1</span>
                             </div>
-                            <div class="flex justify-between">
+                            <div class="flex justify-between text-xs sm:text-sm">
                                 <span class="text-gray-600">Subtotal</span>
-                                <span id="subtotal" class="font-semibold"><?php echo $product['price']; ?></span>
+                                <span id="subtotal">₹<?php echo number_format($product['price'], 2); ?></span>
                             </div>
-                            <div class="flex justify-between">
+                            <div class="flex justify-between text-xs sm:text-sm">
                                 <span class="text-gray-600">Shipping</span>
                                 <span class="font-semibold text-emerald-600">Free</span>
                             </div>
-                            <div class="border-t border-emerald-200 pt-3">
+                            <div class="border-t border-emerald-200 pt-2">
                                 <div class="flex justify-between">
-                                    <span class="text-lg font-bold text-gray-900">Total</span>
-                                    <span id="total" class="text-2xl font-bold text-emerald-600"><?php echo $product['price']; ?></span>
+                                    <span class="text-sm sm:text-base font-bold text-gray-900">Total</span>
+                                    <span id="total" class="text-lg sm:text-xl font-bold text-emerald-600">₹<?php echo number_format($product['price'], 2); ?></span>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Payment Method -->
                     <div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-6 flex items-center">
-                            <span class="w-8 h-8 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-sm font-bold mr-3">4</span>
+                        <h3 class="text-lg sm:text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                            <span class="w-6 h-6 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-sm font-bold mr-2">4</span>
                             Payment Method
                         </h3>
-                        <div class="space-y-4">
-                            <label class="flex items-center space-x-4 p-4 border-2 border-gray-200 rounded-xl hover:border-emerald-300 cursor-pointer transition-all">
+                        <div class="space-y-3">
+                            <label class="flex items-center space-x-3 p-3 border-2 border-gray-200 rounded-lg hover:border-emerald-300 cursor-pointer transition-all">
                                 <input type="radio" name="payment" value="cod" checked class="text-emerald-600 focus:ring-emerald-500">
-                                <div class="flex items-center space-x-3">
-                                    <span class="text-2xl">💵</span>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xl">💵</span>
                                     <div>
-                                        <div class="font-semibold text-gray-900">Cash on Delivery</div>
-                                        <div class="text-sm text-gray-600">Pay when you receive the product</div>
+                                        <div class="font-semibold text-gray-900 text-sm sm:text-base">Cash on Delivery</div>
+                                        <div class="text-xs sm:text-sm text-gray-600">Pay when you receive the product</div>
                                     </div>
                                 </div>
                             </label>
                         </div>
                     </div>
                     <input type="hidden" name="placeOrder" value="<?php echo $user->escape($_GET['product_id']); ?>">
-                    <!-- Place Order Button -->
-                    <div class="pt-6">
-                        <button type="submit" class="w-full bg-gradient-to-r from-emerald-600 to-emerald-700 text-white py-5 px-8 rounded-2xl hover:from-emerald-700 hover:to-emerald-800 transition-all duration-300 font-bold text-xl shadow-xl hover:shadow-2xl hover:scale-105">
-                            Place Order - <span id="finalTotal">₹<?php echo $product['price']; ?></span>
+                    <div class="pt-4">
+                        <button type="submit" class="w-full bg-gradient-to-r from-emerald-600 to-emerald-700 text-white py-3 px-6 rounded-lg hover:from-emerald-700 hover:to-emerald-800 transition-all duration-300 font-bold text-base sm:text-lg shadow-md hover:shadow-lg hover:scale-102">
+                            Place Order - <span id="finalTotal">₹<?php echo number_format($product['price'], 2); ?></span>
                         </button>
-                        <p class="text-center text-gray-600 text-sm mt-4">
+                        <p class="text-center text-gray-600 text-xs sm:text-sm mt-3">
                             By placing this order, you agree to our Terms & Conditions
                         </p>
                     </div>
@@ -451,12 +403,12 @@ if (!$product) {
     </section>
 
     <!-- Product Description -->
-    <section class="py-16 bg-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-gray-50 rounded-3xl p-8">
-                <h3 class="text-2xl font-bold text-gray-900 mb-6">About This Book</h3>
-                <div class="prose prose-lg max-w-none text-gray-700 space-y-4">
-                    <p><?php echo nl2br($product['full_description']); ?></p>
+    <section class="py-12 bg-white pb-24 sm:pb-12">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="bg-gray-50 rounded-2xl p-6">
+                <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-4">About This Book</h3>
+                <div class="prose prose-sm sm:prose-base max-w-none text-gray-700 space-y-3">
+                    <p><?php echo nl2br(htmlspecialchars($product['full_description'])); ?></p>
                 </div>
             </div>
         </div>
@@ -464,48 +416,35 @@ if (!$product) {
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="flex items-center justify-center space-x-3 mb-6">
-                <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center">
-                    <span class="text-white text-lg font-bold">📖</span>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+            <div class="flex items-center justify-center space-x-3 mb-4">
+                <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-lg flex items-center justify-center">
+                    <span class="text-white text-base font-bold">📖</span>
                 </div>
                 <div>
-                    <h3 class="text-xl font-display font-bold">Quranghor</h3>
-                    <p class="text-gray-400 text-sm">Islamic Literature & Knowledge</p>
+                    <h3 class="text-xl sm:text-2xl font-display font-bold">Quranghor</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm">Islamic Literature & Knowledge</p>
                 </div>
             </div>
-            <p class="text-gray-300 mb-6">Dedicated to spreading authentic Islamic knowledge</p>
-            <div class="font-arabic text-gold-400 text-lg mb-4">بارك الله فيكم</div>
-            <p class="text-gray-400 text-sm">&copy; 2025 Quranghor. All rights reserved.</p>
+            <p class="text-gray-300 text-xs sm:text-sm mb-4">Dedicated to spreading authentic Islamic knowledge</p>
+            <div class="font-arabic text-gold-400 text-base sm:text-lg mb-4">بارك الله فيكم</div>
+            <p class="text-gray-400 text-xs sm:text-sm">&copy; 2025 Quranghor. All rights reserved.</p>
         </div>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
-        // Change main image when a thumbnail is clicked
-        document.querySelectorAll('.thumbnail-image').forEach(function(thumbnail) {
-            thumbnail.addEventListener('click', function() {
-                const mainImage = document.getElementById('mainProductImage');
-                mainImage.src = this.src;
-            });
-        });
-    </script>
-
-    <script>
         $(document).ready(function() {
-
             const itemPrice = <?php echo $product['price']; ?>;
 
             // Quantity Management
             function updateOrderSummary() {
                 const quantity = parseInt($('#quantity').val());
                 const subtotal = itemPrice * quantity;
-
                 $('#summaryQuantity').text(quantity);
-                $('#subtotal').text('₹' + subtotal.toLocaleString());
-                $('#total').text('₹' + subtotal.toLocaleString());
-                console.log($('#finalTotal').text());
-                $('#finalTotal').text('₹' + subtotal.toLocaleString());
+                $('#subtotal').text('₹' + subtotal.toLocaleString('en-IN'));
+                $('#total').text('₹' + subtotal.toLocaleString('en-IN'));
+                $('#finalTotal').text('₹' + subtotal.toLocaleString('en-IN'));
             }
 
             $('.quantity-btn').on('click', function() {
@@ -523,21 +462,18 @@ if (!$product) {
             // Form Submission
             $('#orderForm').on('submit', function(e) {
                 e.preventDefault();
-
                 const form = $(this);
                 const submitBtn = form.find('button[type="submit"]');
                 const originalText = submitBtn.html();
 
-                // Show loading state
                 submitBtn.html(`
-            <div class="flex items-center justify-center space-x-2">
-                <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
-                <span>Processing Order...</span>
-            </div>
-        `).prop('disabled', true);
+                    <div class="flex items-center justify-center space-x-2">
+                        <div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                        <span>Processing...</span>
+                    </div>
+                `).prop('disabled', true);
 
                 const formData = new FormData(this);
-
                 $.ajax({
                     url: 'action/buy.action.php',
                     type: 'POST',
@@ -548,37 +484,33 @@ if (!$product) {
                     success: function(data) {
                         if (data.status === 'success') {
                             const successMessage = $(`
-                        <div class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-                            <div class="bg-white rounded-3xl p-8 max-w-md w-full text-center animate-scale-in">
-                                <div class="w-20 h-20 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                                    </svg>
+                                <div class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                                    <div class="bg-white rounded-2xl p-6 max-w-md w-full text-center animate-scale-in">
+                                        <div class="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                            </svg>
+                                        </div>
+                                        <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-3">Order Placed Successfully!</h3>
+                                        <p class="text-xs sm:text-sm text-gray-600 mb-4">${data.message}</p>
+                                        <div class="bg-emerald-50 rounded-lg p-3 mb-4">
+                                            <p class="text-emerald-800 font-semibold text-xs sm:text-sm">Order ID: #${data.order_id}</p>
+                                        </div>
+                                        <a href="index.php" class="block w-full bg-emerald-600 text-white py-2 px-4 rounded-lg hover:bg-emerald-700 transition-colors text-sm sm:text-base">
+                                            Continue Shopping
+                                        </a>
+                                    </div>
                                 </div>
-                                <h3 class="text-2xl font-bold text-gray-900 mb-4">Order Placed Successfully!</h3>
-                                <p class="text-gray-600 mb-6">${data.message}</p>
-                                <div class="bg-emerald-50 rounded-xl p-4 mb-6">
-                                    <p class="text-emerald-800 font-semibold">Order ID: #${data.order_id}</p>
-                                </div>
-                                <button class="w-full bg-emerald-600 text-white py-3 px-6 rounded-xl hover:bg-emerald-700 transition-colors">
-                                    Continue Shopping
-                                </button>
-                            </div>
-                        </div>
-                    `);
-
+                            `);
                             $('body').append(successMessage);
-
-                            successMessage.find('button').on('click', function() {
+                            successMessage.find('a').on('click', function() {
                                 successMessage.remove();
                             });
-
                             setTimeout(() => {
                                 form[0].reset();
                                 $('#quantity').val(1);
                                 updateOrderSummary();
                             }, 1000);
-
                         } else {
                             alert(data.message || "Failed to place order. Please try again.");
                         }
@@ -593,27 +525,22 @@ if (!$product) {
             });
 
             // Thumbnail image switching
-            $('.aspect-w-1').on('click', function() {
-                $('.aspect-w-1').removeClass('ring-2 ring-emerald-500');
-                $(this).addClass('ring-2 ring-emerald-500');
-
-                const index = $(this).index();
-                const images = ['📖', '📚', '📜', '✨'];
-                $('.text-8xl').text(images[index]);
+            $('.thumbnail-image').on('click', function() {
+                $('#mainProductImage').attr('src', $(this).attr('src'));
             });
 
-            // Smooth scrolling for better UX
+            // Smooth scrolling
             $(window).on('scroll', function() {
                 const header = $('header');
                 if ($(this).scrollTop() > 100) {
-                    header.addClass('backdrop-blur-lg bg-white/90');
+                    header.addClass('backdrop-blur-lg bg-white/95');
                 } else {
-                    header.removeClass('backdrop-blur-lg bg-white/90');
+                    header.removeClass('backdrop-blur-lg bg-white/95');
                 }
             });
 
             // Form validation enhancements
-            $('input[required], textarea[required], select[required]').on('blur', function() {
+            $('input[required], textarea[required]').on('blur', function() {
                 if ($(this).val().trim() === '') {
                     $(this).addClass('border-red-300 focus:border-red-500 focus:ring-red-100')
                         .removeClass('border-gray-200 focus:border-emerald-500 focus:ring-emerald-100');
@@ -631,12 +558,115 @@ if (!$product) {
                 $(this).val(value);
             });
 
+            // Lazy loading images
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src;
+                            img.classList.remove('lazy');
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                });
+                document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
+            }
+
             console.log('📖 Quranghor Product View Page Loaded Successfully');
             console.log('🛒 Ready to process orders for authentic Islamic literature');
-
         });
     </script>
 
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Active navigation highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop && scrollY < sectionTop + section.clientHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('text-emerald-600', 'bg-emerald-50');
+                link.classList.add('text-gray-600');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.remove('text-gray-600');
+                    link.classList.add('text-emerald-600', 'bg-emerald-50');
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.group, .animate-slide-up').forEach(el => observer.observe(el));
+
+        // Lazy loading images
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
+        }
+
+        // Notification system
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'fixed bottom-20 sm:top-20 right-4 bg-emerald-600 text-white px-4 py-2 rounded-lg shadow-lg z-50 transform translate-x-full opacity-0 transition-all duration-300';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.classList.remove('translate-x-full', 'opacity-0'), 100);
+            setTimeout(() => {
+                notification.classList.add('translate-x-full', 'opacity-0');
+                setTimeout(() => document.body.removeChild(notification), 300);
+            }, 3000);
+        }
+
+        console.log('🕌 Quranghor - Modern Islamic Literature Store Loaded Successfully');
+        console.log('📖 May Allah bless your journey of seeking knowledge');
+    </script>
 </body>
 
 </html>
