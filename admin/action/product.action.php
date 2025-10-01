@@ -149,16 +149,20 @@ if (isset($_POST['editProduct'])) {
         }
 
         // Update product details
+        $embed_link = $user->YouTubeID($_POST['embed_link']);
         $user->query("UPDATE products 
                       SET title = :title, description = :description, 
                           full_description = :full_description, 
-                          price = :price, del_price = :del_price 
+                          price = :price, 
+                          del_price = :del_price,
+                          embed_link = :embed_link
                       WHERE id = :id");
         $user->bind(':title', trim($_POST['title']));
         $user->bind(':description', trim($_POST['description']));
         $user->bind(':full_description', trim($_POST['full_description']));
         $user->bind(':price', trim($_POST['price']));
         $user->bind(':del_price', trim($_POST['del_price']));
+        $user->bind(':embed_link', $embed_link);
         $user->bind(':id', $product_id);
         $user->execute();
 

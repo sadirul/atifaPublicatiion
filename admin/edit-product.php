@@ -96,13 +96,13 @@ $images = $user->fetchAll();
                                     <?php foreach ($images as $img): ?>
                                         <div style="position:relative; display:inline-block;">
                                             <img src="../assets/uploads/products/<?php echo htmlspecialchars($img['image']); ?>"
-                                                 alt="Product Image"
-                                                 style="max-width:100px; border:1px solid #ccc; border-radius:4px;">
+                                                alt="Product Image"
+                                                style="max-width:100px; border:1px solid #ccc; border-radius:4px;">
 
                                             <!-- Delete Icon -->
                                             <a href="action/product.action.php?deleteImage&id=<?php echo (int)$img['id']; ?>&product_id=<?php echo (int)$product_id; ?>"
-                                               onclick="return confirm('Are you sure you want to delete this image?');"
-                                               style="position:absolute; top:-8px; right:-8px; background:#dc3545; color:#fff;
+                                                onclick="return confirm('Are you sure you want to delete this image?');"
+                                                style="position:absolute; top:-8px; right:-8px; background:#dc3545; color:#fff;
                                                       border-radius:50%; padding:3px 6px; text-decoration:none; font-size:12px;">
                                                 ✕
                                             </a>
@@ -125,6 +125,14 @@ $images = $user->fetchAll();
                                     id="product-del-price" name="del_price"
                                     placeholder="Enter Original/Del Price"
                                     value="<?php echo htmlspecialchars($product['del_price']); ?>">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="product-embed-link">Embed Link</label>
+                                <input type="text" class="form-control input-shadow bg-white"
+                                    id="product-embed-link" name="embed_link"
+                                    placeholder="Embed Link"
+                                    value="https://www.youtube.com/watch?v=<?php echo htmlspecialchars($product['embed_link']); ?>">
                             </div>
 
                             <div class="form-group">
