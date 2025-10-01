@@ -84,7 +84,9 @@ if (!$user->isLogedin()) {
                                                 <a href="tel:<?php echo htmlspecialchars($order['mobile']); ?>" style="white-space: nowrap;">
                                                     <?php echo htmlspecialchars($order['mobile']); ?>
                                                 </a><br>
-                                                <strong>Flat No: </strong> <?php echo htmlspecialchars($order['flat_no']); ?><br>
+                                                <?php if (!empty($order['flat_no'])) : ?>
+                                                    <strong>Flat No: </strong> <?php echo htmlspecialchars($order['flat_no']); ?><br>
+                                                <?php endif; ?>
                                                 <strong>City: </strong> <?php echo htmlspecialchars($order['city']); ?><br>
                                                 <strong>Post: </strong> <?php echo htmlspecialchars($order['po']); ?><br>
                                                 <strong>PS: </strong> <?php echo htmlspecialchars($order['ps']); ?><br>

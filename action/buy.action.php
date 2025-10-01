@@ -55,7 +55,7 @@ if (isset($_POST['placeOrder']) && !empty($_POST['placeOrder'])) {
             exit();
         }
 
-        if (empty($flat_no) || empty($city) || empty($po) || empty($ps) || empty($district) || empty($state) || empty($pin)) {
+        if (empty($city) || empty($po) || empty($ps) || empty($district) || empty($state) || empty($pin)) {
             echo json_encode(["status" => "error", "message" => "All address fields are required (except Near)."]);
             exit();
         }
