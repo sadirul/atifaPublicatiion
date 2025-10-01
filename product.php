@@ -244,7 +244,7 @@ if (!$product) {
                 <div class="space-y-6">
                     <div>
                         <h1 class="text-2xl sm:text-3xl font-display font-bold text-gray-900 mb-3"><?php echo htmlspecialchars($product['title']); ?></h1>
-                        <p class="text-sm sm:text-base text-gray-600 mb-3"><?php echo htmlspecialchars($product['description']); ?></p>
+                        <p class="text-sm sm:text-base text-gray-600 mb-3"><?php echo nl2br(htmlspecialchars($product['description'])); ?></p>
                         <div class="flex items-center space-x-3 mb-4">
                             <div class="flex text-gold-400 text-base">
                                 <span>★★★★★</span>
@@ -387,7 +387,7 @@ if (!$product) {
                                     </div>
                                     <div>
                                         <h4 class="font-semibold text-gray-900 text-sm sm:text-base"><?php echo htmlspecialchars($product['title']); ?></h4>
-                                        <p class="text-xs sm:text-sm text-gray-600 line-clamp-2"><?php echo htmlspecialchars($product['description']); ?></p>
+                                        <p class="text-xs sm:text-sm text-gray-600 line-clamp-2"><?php echo nl2br(htmlspecialchars($product['description'])); ?></p>
                                     </div>
                                 </div>
                                 <div class="text-right">
