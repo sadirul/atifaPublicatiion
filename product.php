@@ -319,7 +319,7 @@ if (!$product) {
 
                         <!-- Flat/House No. -->
                         <div class="mb-3">
-                            <label class="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">Flat/House No. *</label>
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">Flat/House No.</label>
                             <input type="text" name="flat_no" placeholder="Flat/House No."
                                 class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-100 focus:border-emerald-500 transition-all">
                         </div>
