@@ -5,10 +5,10 @@
             <!-- Logo -->
             <div class="flex items-center space-x-2">
                 <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-md">
-                    <img src="assets/static/images/icon.png" alt="Quranghor Logo" class="w-full h-full rounded-lg object-cover">
+                    <img src="assets/static/images/icon.png" alt="Atifa Publication Logo" class="w-full h-full rounded-lg object-cover">
                 </div>
                 <div>
-                    <h1 class="text-xl sm:text-2xl font-display font-bold bg-gradient-to-r from-emerald-600 to-emerald-800 bg-clip-text text-transparent">Quranghor</h1>
+                    <h1 class="text-xl sm:text-2xl font-display font-bold bg-gradient-to-r from-emerald-600 to-emerald-800 bg-clip-text text-transparent">Atifa Publication</h1>
                     <p class="text-xs text-gray-500 hidden sm:block">Islamic Literature</p>
                 </div>
             </div>

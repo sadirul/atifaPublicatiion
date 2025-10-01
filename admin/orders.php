@@ -84,7 +84,16 @@ if (!$user->isLogedin()) {
                                                 <a href="tel:<?php echo htmlspecialchars($order['mobile']); ?>" style="white-space: nowrap;">
                                                     <?php echo htmlspecialchars($order['mobile']); ?>
                                                 </a><br>
-                                                <strong>Address</strong>:<br> <?php echo htmlspecialchars($order['address']); ?><br>
+                                                <strong>Flat No: </strong> <?php echo htmlspecialchars($order['flat_no']); ?><br>
+                                                <strong>City: </strong> <?php echo htmlspecialchars($order['city']); ?><br>
+                                                <strong>Post: </strong> <?php echo htmlspecialchars($order['po']); ?><br>
+                                                <strong>PS: </strong> <?php echo htmlspecialchars($order['ps']); ?><br>
+                                                <strong>District: </strong> <?php echo htmlspecialchars($order['district']); ?><br>
+                                                <strong>State: </strong> <?php echo htmlspecialchars($order['state']); ?><br>
+                                                <strong>PIN: </strong> <?php echo htmlspecialchars($order['pin']); ?><br>
+                                                <?php if (!empty($order['near'])) : ?>
+                                                    <strong>Near: </strong> <?php echo htmlspecialchars($order['near']); ?><br>
+                                                <?php endif; ?>
                                                 <hr />
                                                 <strong>Date: </strong><?php echo $user->dateFormat('d M Y | h:i:s a', htmlspecialchars($order['created_at'])); ?>
                                             </td>

@@ -32,12 +32,12 @@ if (!$product) {
     <meta name="theme-color" content="#059669">
     <link rel="icon" href="assets/static/images/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="assets/static/images/favicon.ico" type="image/x-icon">
-    <title><?php echo htmlspecialchars($product['title']); ?> - Quranghor Islamic Literature Store</title>
+    <title><?php echo htmlspecialchars($product['title']); ?> - Atifa Publication Islamic Literature Store</title>
 
     <!-- SEO Meta Tags -->
     <meta name="description" content="<?php echo htmlspecialchars(substr($product['description'], 0, 160)); ?>">
-    <meta name="keywords" content="Islamic books, <?php echo htmlspecialchars($product['title']); ?>, Quranghor, Islamic literature, Hadith, Quran, Sahih al-Bukhari">
-    <meta name="author" content="Quranghor Islamic Literature Store">
+    <meta name="keywords" content="Islamic books, <?php echo htmlspecialchars($product['title']); ?>, Atifa Publication, Islamic literature, Hadith, Quran, Sahih al-Bukhari">
+    <meta name="author" content="Atifa Publication Islamic Literature Store">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:title" content="<?php echo htmlspecialchars($product['title']); ?>">
@@ -45,14 +45,14 @@ if (!$product) {
     <meta property="og:type" content="product">
     <meta property="og:url" content="<?php echo 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>">
     <meta property="og:image" content="<?php echo 'https://' . $_SERVER['HTTP_HOST'] . '/assets/uploads/products/' . htmlspecialchars($product['image']); ?>">
-    <meta property="og:site_name" content="Quranghor Islamic Literature Store">
+    <meta property="og:site_name" content="Atifa Publication Islamic Literature Store">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?php echo htmlspecialchars($product['title']); ?>">
     <meta name="twitter:description" content="<?php echo htmlspecialchars(substr($product['description'], 0, 160)); ?>">
     <meta name="twitter:image" content="<?php echo 'https://' . $_SERVER['HTTP_HOST'] . '/assets/uploads/products/' . htmlspecialchars($product['image']); ?>">
-    <meta name="twitter:site" content="@Quranghor">
+    <meta name="twitter:site" content="@Atifa Publication">
 
     <!-- JSON-LD Structured Data for SEO -->
     <script type="application/ld+json">
@@ -66,7 +66,7 @@ if (!$product) {
             "mpn": "<?php echo $product['id']; ?>",
             "brand": {
                 "@type": "Brand",
-                "name": "Quranghor"
+                "name": "Atifa Publication"
             },
             "offers": {
                 "@type": "Offer",
@@ -269,6 +269,21 @@ if (!$product) {
             </div>
         </div>
     </section>
+    <?php if (!empty($product['embed_link'])): ?>
+        <div class="border-t border-gray-200 flex justify-center p-5">
+            <iframe
+                class="rounded-xl overflow-hidden"
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/<?php echo $product['embed_link']; ?>?autoplay=1&mute=1"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+            </iframe>
+        </div>
+    <?php endif; ?>
 
     <!-- Order Form Section -->
     <section class="py-12 bg-gradient-to-br from-emerald-50 to-white">
@@ -294,10 +309,6 @@ if (!$product) {
                                 <label class="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">Mobile Number *</label>
                                 <input name="mobile" type="tel" required class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-100 focus:border-emerald-500 transition-all" placeholder="+91 XXXXX XXXXX">
                             </div>
-                            <div>
-                                <label class="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">Email Address (optional)</label>
-                                <input name="email" type="email" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-100 focus:border-emerald-500 transition-all" placeholder="your.email@example.com">
-                            </div>
                         </div>
                     </div>
                     <div>
@@ -305,11 +316,64 @@ if (!$product) {
                             <span class="w-6 h-6 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-sm font-bold mr-2">2</span>
                             Delivery Address
                         </h3>
-                        <div>
-                            <label class="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">Street Address *</label>
-                            <textarea name="address" required class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-100 focus:border-emerald-500 transition-all" rows="3" placeholder="House/Flat No., Building, Street, Area"></textarea>
+
+                        <!-- Flat/House No. -->
+                        <div class="mb-3">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">Flat/House No. *</label>
+                            <input type="text" name="flat_no" required placeholder="Flat/House No."
+                                class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-100 focus:border-emerald-500 transition-all">
+                        </div>
+
+                        <!-- Village/City -->
+                        <div class="mb-3">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">Village/City *</label>
+                            <input type="text" name="city" required placeholder="Village/City"
+                                class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-100 focus:border-emerald-500 transition-all">
+                        </div>
+
+                        <!-- P.O. -->
+                        <div class="mb-3">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">P.O. *</label>
+                            <input type="text" name="po" required placeholder="Post Office"
+                                class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-100 focus:border-emerald-500 transition-all">
+                        </div>
+
+                        <!-- P.S. -->
+                        <div class="mb-3">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">P.S. *</label>
+                            <input type="text" name="ps" required placeholder="Police Station"
+                                class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-100 focus:border-emerald-500 transition-all">
+                        </div>
+
+                        <!-- District -->
+                        <div class="mb-3">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">District *</label>
+                            <input type="text" name="district" required placeholder="District"
+                                class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-100 focus:border-emerald-500 transition-all">
+                        </div>
+
+                        <!-- State -->
+                        <div class="mb-3">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">State *</label>
+                            <input type="text" name="state" required placeholder="State"
+                                class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-100 focus:border-emerald-500 transition-all">
+                        </div>
+
+                        <!-- Pin -->
+                        <div class="mb-3">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">PIN Code *</label>
+                            <input type="text" name="pin" required placeholder="PIN Code"
+                                class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-100 focus:border-emerald-500 transition-all">
+                        </div>
+
+                        <!-- Near -->
+                        <div class="mb-3">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">Near (Landmark)</label>
+                            <input type="text" name="near" placeholder="Near / Landmark"
+                                class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-100 focus:border-emerald-500 transition-all">
                         </div>
                     </div>
+
                     <div>
                         <h3 class="text-lg sm:text-xl font-semibold text-gray-900 mb-4 flex items-center">
                             <span class="w-6 h-6 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-sm font-bold mr-2">3</span>
@@ -422,13 +486,13 @@ if (!$product) {
                     <span class="text-white text-base font-bold">📖</span>
                 </div>
                 <div>
-                    <h3 class="text-xl sm:text-2xl font-display font-bold">Quranghor</h3>
+                    <h3 class="text-xl sm:text-2xl font-display font-bold">Atifa Publication</h3>
                     <p class="text-gray-400 text-xs sm:text-sm">Islamic Literature & Knowledge</p>
                 </div>
             </div>
             <p class="text-gray-300 text-xs sm:text-sm mb-4">Dedicated to spreading authentic Islamic knowledge</p>
             <div class="font-arabic text-gold-400 text-base sm:text-lg mb-4">بارك الله فيكم</div>
-            <p class="text-gray-400 text-xs sm:text-sm">&copy; 2025 Quranghor. All rights reserved.</p>
+            <p class="text-gray-400 text-xs sm:text-sm">&copy; 2025 Atifa Publication. All rights reserved.</p>
         </div>
     </footer>
 
@@ -573,7 +637,7 @@ if (!$product) {
                 document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
             }
 
-            console.log('📖 Quranghor Product View Page Loaded Successfully');
+            console.log('📖 Atifa Publication Product View Page Loaded Successfully');
             console.log('🛒 Ready to process orders for authentic Islamic literature');
         });
     </script>
@@ -664,7 +728,7 @@ if (!$product) {
             }, 3000);
         }
 
-        console.log('🕌 Quranghor - Modern Islamic Literature Store Loaded Successfully');
+        console.log('🕌 Atifa Publication - Modern Islamic Literature Store Loaded Successfully');
         console.log('📖 May Allah bless your journey of seeking knowledge');
     </script>
 </body>

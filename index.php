@@ -11,7 +11,7 @@ $user = new User();
     <meta name="theme-color" content="#059669">
     <link rel="icon" href="assets/static/images/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="assets/static/images/favicon.ico" type="image/x-icon">
-    <title>Quranghor - Modern Islamic Literature Store</title>
+    <title>Atifa Publication - Modern Islamic Literature Store</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -286,7 +286,7 @@ $user = new User();
                     <div class="flex text-gold-400 mb-3 text-sm">
                         <span>★★★★★</span>
                     </div>
-                    <p class="text-xs sm:text-sm text-gray-600 mb-4 italic">"Quranghor has helped me build an amazing Islamic library. Great customer service and authentic books."</p>
+                    <p class="text-xs sm:text-sm text-gray-600 mb-4 italic">"Atifa Publication has helped me build an amazing Islamic library. Great customer service and authentic books."</p>
                     <div class="flex items-center">
                         <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm mr-3">
                             MY
@@ -330,7 +330,7 @@ $user = new User();
                 <div class="relative">
                     <div class="bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-2xl p-8 text-white relative overflow-hidden">
                         <div class="relative z-10">
-                            <h3 class="text-xl sm:text-2xl font-bold mb-4">Why Choose Quranghor?</h3>
+                            <h3 class="text-xl sm:text-2xl font-bold mb-4">Why Choose Atifa Publication?</h3>
                             <div class="space-y-3">
                                 <div class="flex items-center space-x-3">
                                     <div class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
@@ -450,7 +450,7 @@ $user = new User();
                             <span class="text-white text-base font-bold">📖</span>
                         </div>
                         <div>
-                            <h3 class="text-xl sm:text-2xl font-display font-bold">Quranghor</h3>
+                            <h3 class="text-xl sm:text-2xl font-display font-bold">Atifa Publication</h3>
                             <p class="text-gray-400 text-xs sm:text-sm">Islamic Literature & Knowledge</p>
                         </div>
                     </div>
@@ -471,7 +471,7 @@ $user = new User();
             </div>
             <div class="border-t border-gray-700 pt-6 flex flex-col sm:flex-row justify-between items-center">
                 <p class="text-gray-400 text-xs sm:text-sm mb-4 sm:mb-0">
-                    &copy; 2025 Quranghor. All rights reserved. Made with ❤️ for the Muslim Ummah.
+                    &copy; 2025 Atifa Publication. All rights reserved. Made with ❤️ for the Muslim Ummah.
                 </p>
                 <div class="flex space-x-4 text-xs sm:text-sm text-gray-400">
                     <a href="#" class="hover:text-emerald-400 transition-colors">Privacy Policy</a>
@@ -562,7 +562,7 @@ $user = new User();
             }, 3000);
         }
 
-        console.log('🕌 Quranghor - Modern Islamic Literature Store Loaded Successfully');
+        console.log('🕌 Atifa Publication - Modern Islamic Literature Store Loaded Successfully');
         console.log('📖 May Allah bless your journey of seeking knowledge');
     </script>
 </body>

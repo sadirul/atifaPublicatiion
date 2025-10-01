@@ -77,6 +77,13 @@ if (!$user->isLogedin()) {
                                     id="product-del-price" name="del_price"
                                     placeholder="Enter Original/Del Price">
                             </div>
+
+                            <div class="form-group">
+                                <label for="product-embed-link">Embed Link</label>
+                                <input type="text" class="form-control input-shadow bg-white"
+                                    id="product-embed-link" name="embed_link"
+                                    placeholder="Embed Link">
+                            </div>
                             <input type="hidden" name="addProduct">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-dark shadow-dark px-5">

@@ -28,13 +28,15 @@ if (isset($_POST['addProduct'])) {
         }
 
         // Insert main product first
-        $user->query("INSERT INTO products (title, description, full_description, price, del_price) 
-                      VALUES (:title, :description, :full_description, :price, :del_price)");
+        $embed_link = $user->YouTubeID($_POST['embed_link']);
+        $user->query("INSERT INTO products (title, description, full_description, price, del_price, embed_link) 
+                      VALUES (:title, :description, :full_description, :price, :del_price, :embed_link)");
         $user->bind(':title', trim($_POST['title']));
         $user->bind(':description', trim($_POST['description']));
         $user->bind(':full_description', trim($_POST['full_description']));
         $user->bind(':price', trim($_POST['price']));
         $user->bind(':del_price', trim($_POST['del_price']));
+        $user->bind(':embed_link', $embed_link);
 
         if ($user->execute()) {
             $productId = $user->insertID();

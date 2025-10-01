@@ -5,14 +5,12 @@ $user = new User();
 
 header('Content-Type: application/json'); // return JSON always
 
-
 function generateOrderID($prefix = 'ORD')
 {
     $date = date('Ymd-His');
     $random = strtoupper(substr(bin2hex(random_bytes(2)), 0, 4));
     return $prefix . '-' . $date . '-' . $random;
 }
-
 
 if (isset($_POST['placeOrder']) && !empty($_POST['placeOrder'])) {
     try {
@@ -34,43 +32,53 @@ if (isset($_POST['placeOrder']) && !empty($_POST['placeOrder'])) {
         $product = $user->fetchOne();
 
         // Sanitize inputs
-        $name    = trim($_POST['name'] ?? '');
-        $email   = trim($_POST['email'] ?? '');
-        $phone   = trim($_POST['mobile'] ?? '');
-        $address = trim($_POST['address'] ?? '');
+        $name     = trim($_POST['name'] ?? '');
+        $email    = trim($_POST['email'] ?? '');
+        $phone    = trim($_POST['mobile'] ?? '');
+        $flat_no  = trim($_POST['flat_no'] ?? '');
+        $city     = trim($_POST['city'] ?? '');
+        $po       = trim($_POST['po'] ?? '');
+        $ps       = trim($_POST['ps'] ?? '');
+        $district = trim($_POST['district'] ?? '');
+        $state    = trim($_POST['state'] ?? '');
+        $pin      = trim($_POST['pin'] ?? '');
+        $near     = trim($_POST['near'] ?? '');
 
         // Basic validation
         if (empty($name)) {
-            echo json_encode([
-                "status" => "error",
-                "message" => "Name is required."
-            ]);
+            echo json_encode(["status" => "error", "message" => "Name is required."]);
             exit();
         }
 
         if (empty($phone)) {
-            echo json_encode([
-                "status" => "error",
-                "message" => "Mobile number is required."
-            ]);
+            echo json_encode(["status" => "error", "message" => "Mobile number is required."]);
             exit();
         }
 
-        if (empty($address)) {
-            echo json_encode([
-                "status" => "error",
-                "message" => "Address is required."
-            ]);
+        if (empty($flat_no) || empty($city) || empty($po) || empty($ps) || empty($district) || empty($state) || empty($pin)) {
+            echo json_encode(["status" => "error", "message" => "All address fields are required (except Near)."]);
             exit();
         }
+
         $order_id = generateOrderID();
+
         // Insert order
-        $user->query("INSERT INTO orders (name, email, mobile, address, product_id, qty, status, amount, total_amount, order_id) 
-                      VALUES (:name, :email, :mobile, :address, :product_id, :qty, 'Pending', :amount, :total_amount, :order_id)");
+        $user->query("INSERT INTO orders 
+            (name, email, mobile, flat_no, city, po, ps, district, state, pin, near, product_id, qty, status, amount, total_amount, order_id) 
+            VALUES 
+            (:name, :email, :mobile, :flat_no, :city, :po, :ps, :district, :state, :pin, :near, :product_id, :qty, 'Pending', :amount, :total_amount, :order_id)");
+
         $user->bind(":name", $name);
         $user->bind(":email", $email ?: null);
         $user->bind(":mobile", $phone);
-        $user->bind(":address", $address);
+        $user->bind(":flat_no", $flat_no);
+        $user->bind(":city", $city);
+        $user->bind(":po", $po);
+        $user->bind(":ps", $ps);
+        $user->bind(":district", $district);
+        $user->bind(":state", $state);
+        $user->bind(":pin", $pin);
+        $user->bind(":near", $near ?: null);
         $user->bind(":product_id", $product['id']);
         $user->bind(":qty", $_POST['qty'] ?? 1);
         $user->bind(":amount", $product['price']);
