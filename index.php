@@ -128,7 +128,9 @@ $user = new User();
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body class="font-sans bg-gray-50 overflow-x-hidden">
@@ -140,7 +142,8 @@ $user = new User();
 
     <!-- Hero Section -->
     <section id="home" class="relative w-full mt-16 mb-16 sm:mb-0">
-        <img src="./assets/static/images/atifa-publication.jpg" class="w-full h-auto object-cover lazy" data-src="./assets/static/images/atifa-publication.jpg">
+        <img src="./assets/static/images/atifa-publication.jpg" class="w-full h-auto object-cover lazy"
+            data-src="./assets/static/images/atifa-publication.jpg">
     </section>
 
     <!-- Stats Section -->
@@ -148,19 +151,27 @@ $user = new User();
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 <div class="text-center group">
-                    <div class="text-3xl sm:text-4xl font-bold text-emerald-600 mb-1 group-hover:scale-105 transition-transform">1000+</div>
+                    <div
+                        class="text-3xl sm:text-4xl font-bold text-emerald-600 mb-1 group-hover:scale-105 transition-transform">
+                        1000+</div>
                     <p class="text-xs sm:text-sm text-gray-600 font-medium">Islamic Books</p>
                 </div>
                 <div class="text-center group">
-                    <div class="text-3xl sm:text-4xl font-bold text-emerald-600 mb-1 group-hover:scale-105 transition-transform">50k+</div>
+                    <div
+                        class="text-3xl sm:text-4xl font-bold text-emerald-600 mb-1 group-hover:scale-105 transition-transform">
+                        50k+</div>
                     <p class="text-xs sm:text-sm text-gray-600 font-medium">Happy Customers</p>
                 </div>
                 <div class="text-center group">
-                    <div class="text-3xl sm:text-4xl font-bold text-emerald-600 mb-1 group-hover:scale-105 transition-transform">100+</div>
+                    <div
+                        class="text-3xl sm:text-4xl font-bold text-emerald-600 mb-1 group-hover:scale-105 transition-transform">
+                        100+</div>
                     <p class="text-xs sm:text-sm text-gray-600 font-medium">Scholars</p>
                 </div>
                 <div class="text-center group">
-                    <div class="text-3xl sm:text-4xl font-bold text-emerald-600 mb-1 group-hover:scale-105 transition-transform">4.9★</div>
+                    <div
+                        class="text-3xl sm:text-4xl font-bold text-emerald-600 mb-1 group-hover:scale-105 transition-transform">
+                        4.9★</div>
                     <p class="text-xs sm:text-sm text-gray-600 font-medium">Rating</p>
                 </div>
             </div>
@@ -172,33 +183,38 @@ $user = new User();
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="text-center mb-12">
                 <h2 class="text-3xl sm:text-4xl font-display font-bold text-gray-900 mb-3">Browse Categories</h2>
-                <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">Find the perfect Islamic literature for your spiritual journey</p>
+                <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">Find the perfect Islamic literature for
+                    your spiritual journey</p>
             </div>
 
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 <div class="group cursor-pointer">
-                    <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 hover:scale-102">
+                    <div
+                        class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 hover:scale-102">
                         <div class="text-4xl mb-3 group-hover:scale-105 transition-transform">📖</div>
                         <h3 class="font-semibold text-gray-900 text-sm sm:text-base mb-1">Quran & Tafseer</h3>
                         <p class="text-xs sm:text-sm text-gray-600">Holy Quran with translations and commentary</p>
                     </div>
                 </div>
                 <div class="group cursor-pointer">
-                    <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 hover:scale-102">
+                    <div
+                        class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 hover:scale-102">
                         <div class="text-4xl mb-3 group-hover:scale-105 transition-transform">📚</div>
                         <h3 class="font-semibold text-gray-900 text-sm sm:text-base mb-1">Hadith Collections</h3>
                         <p class="text-xs sm:text-sm text-gray-600">Authentic sayings of Prophet Muhammad (PBUH)</p>
                     </div>
                 </div>
                 <div class="group cursor-pointer">
-                    <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 hover:scale-102">
+                    <div
+                        class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 hover:scale-102">
                         <div class="text-4xl mb-3 group-hover:scale-105 transition-transform">🕌</div>
                         <h3 class="font-semibold text-gray-900 text-sm sm:text-base mb-1">Islamic History</h3>
                         <p class="text-xs sm:text-sm text-gray-600">Stories and history of Islam</p>
                     </div>
                 </div>
                 <div class="group cursor-pointer">
-                    <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 hover:scale-102">
+                    <div
+                        class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 hover:scale-102">
                         <div class="text-4xl mb-3 group-hover:scale-105 transition-transform">⭐</div>
                         <h3 class="font-semibold text-gray-900 text-sm sm:text-base mb-1">Islamic Ethics</h3>
                         <p class="text-xs sm:text-sm text-gray-600">Moral guidance and spiritual development</p>
@@ -214,7 +230,8 @@ $user = new User();
             <div class="text-center mb-12">
                 <span class="text-emerald-600 font-semibold text-base sm:text-lg mb-2 block">Bestsellers</span>
                 <h2 class="text-3xl sm:text-4xl font-display font-bold text-gray-900 mb-4">Featured Islamic Books</h2>
-                <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">Carefully curated collection from renowned Islamic scholars and trusted publishers</p>
+                <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">Carefully curated collection from
+                    renowned Islamic scholars and trusted publishers</p>
             </div>
 
             <!-- Books Grid -->
@@ -231,11 +248,14 @@ $user = new User();
                     $user->bind(':pid', $row['id']);
                     $imgRow = $user->fetchOne();
                     $image = $imgRow['image'] ?? $row['image'] ?? 'placeholder.png';
-                ?>
+                    ?>
                     <div class="group cursor-pointer">
-                        <div class="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 hover:scale-102">
+                        <div
+                            class="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 hover:scale-102">
                             <div class="h-64 sm:h-72 relative overflow-hidden">
-                                <img src="assets/uploads/products/<?= htmlspecialchars($image) ?>" alt="<?= htmlspecialchars($row['title']) ?>" class="w-full h-full object-cover lazy" data-src="assets/uploads/products/<?= htmlspecialchars($image) ?>">
+                                <img src="assets/uploads/products/<?= htmlspecialchars($image) ?>"
+                                    alt="<?= htmlspecialchars($row['title']) ?>" class="w-full h-full object-cover lazy"
+                                    data-src="assets/uploads/products/<?= htmlspecialchars($image) ?>">
                                 <div class="absolute inset-0 bg-black/10"></div>
                                 <div class="relative z-10 flex flex-col items-center justify-center h-full text-white p-4">
                                     <div class="text-5xl mb-3 group-hover:scale-105 transition-transform">
@@ -244,11 +264,13 @@ $user = new User();
                                     <div class="font-arabic text-lg sm:text-xl text-center">
                                         <?= htmlspecialchars($row['arabic_title'] ?? $row['title']) ?>
                                     </div>
-                                    <div class="text-xs sm:text-sm opacity-90"><?= htmlspecialchars($row['subtitle'] ?? '') ?></div>
+                                    <div class="text-xs sm:text-sm opacity-90">
+                                        <?= htmlspecialchars($row['subtitle'] ?? '') ?></div>
                                 </div>
                                 <?php if ($isBestseller): ?>
                                     <div class="absolute top-3 right-3">
-                                        <span class="bg-gold-500 text-emerald-900 px-2 py-1 rounded-full text-xs font-bold shadow-md">
+                                        <span
+                                            class="bg-gold-500 text-emerald-900 px-2 py-1 rounded-full text-xs font-bold shadow-md">
                                             Bestseller
                                         </span>
                                     </div>
@@ -256,23 +278,28 @@ $user = new User();
                             </div>
                             <div class="p-4">
                                 <a href="product.php?product_id=<?= md5($row['id']) ?>">
-                                    <h3 class="text-base sm:text-lg font-semibold text-gray-900 mb-2 group-hover:text-emerald-600 transition-colors">
+                                    <h3
+                                        class="text-base sm:text-lg font-semibold text-gray-900 mb-2 group-hover:text-emerald-600 transition-colors">
                                         <?= htmlspecialchars($row['title']) ?>
                                     </h3>
                                 </a>
-                                <p class="text-xs sm:text-sm text-gray-600 mb-3 line-clamp-2"><?= htmlspecialchars($row['description']) ?></p>
+                                <p class="text-xs sm:text-sm text-gray-600 mb-3 line-clamp-2">
+                                    <?= htmlspecialchars($row['description']) ?></p>
                                 <div class="flex items-center justify-between mb-3">
                                     <div class="flex items-center space-x-2">
-                                        <span class="text-lg sm:text-xl font-bold text-emerald-600">₹<?= number_format($price, 2) ?></span>
+                                        <span
+                                            class="text-lg sm:text-xl font-bold text-emerald-600">₹<?= number_format($price, 2) ?></span>
                                         <?php if ($delPrice): ?>
-                                            <span class="text-xs sm:text-sm text-gray-500 line-through">₹<?= number_format($delPrice, 2) ?></span>
+                                            <span
+                                                class="text-xs sm:text-sm text-gray-500 line-through">₹<?= number_format($delPrice, 2) ?></span>
                                         <?php endif; ?>
                                     </div>
                                     <div class="flex text-gold-400 text-sm">
                                         <span><?= str_repeat('★', $rating) ?><?= str_repeat('☆', 5 - $rating) ?></span>
                                     </div>
                                 </div>
-                                <a href="product.php?product_id=<?= md5($row['id']) ?>" class="w-full bg-emerald-600 text-white py-2 px-4 rounded-lg hover:bg-emerald-700 transition-all duration-300 font-medium text-sm sm:text-base">
+                                <a href="product.php?product_id=<?= md5($row['id']) ?>"
+                                    class="w-full bg-emerald-600 text-white py-2 px-4 rounded-lg hover:bg-emerald-700 transition-all duration-300 font-medium text-sm sm:text-base">
                                     Buy Now
                                 </a>
                             </div>
@@ -288,17 +315,21 @@ $user = new User();
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="text-center mb-12">
                 <h2 class="text-3xl sm:text-4xl font-display font-bold text-gray-900 mb-4">What Our Readers Say</h2>
-                <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">Join thousands of satisfied customers on their Islamic learning journey</p>
+                <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">Join thousands of satisfied customers on
+                    their Islamic learning journey</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100">
+                <div
+                    class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100">
                     <div class="flex text-gold-400 mb-3 text-sm">
                         <span>★★★★★</span>
                     </div>
-                    <p class="text-xs sm:text-sm text-gray-600 mb-4 italic">"Excellent collection of authentic Islamic books. The quality is outstanding and delivery was fast. Highly recommended!"</p>
+                    <p class="text-xs sm:text-sm text-gray-600 mb-4 italic">"Excellent collection of authentic Islamic
+                        books. The quality is outstanding and delivery was fast. Highly recommended!"</p>
                     <div class="flex items-center">
-                        <div class="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold text-sm mr-3">
+                        <div
+                            class="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold text-sm mr-3">
                             AM
                         </div>
                         <div>
@@ -307,13 +338,16 @@ $user = new User();
                         </div>
                     </div>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100">
+                <div
+                    class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100">
                     <div class="flex text-gold-400 mb-3 text-sm">
                         <span>★★★★★</span>
                     </div>
-                    <p class="text-xs sm:text-sm text-gray-600 mb-4 italic">"Amazing selection of books with beautiful translations. This store has become my go-to for Islamic literature."</p>
+                    <p class="text-xs sm:text-sm text-gray-600 mb-4 italic">"Amazing selection of books with beautiful
+                        translations. This store has become my go-to for Islamic literature."</p>
                     <div class="flex items-center">
-                        <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm mr-3">
+                        <div
+                            class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm mr-3">
                             SA
                         </div>
                         <div>
@@ -322,13 +356,16 @@ $user = new User();
                         </div>
                     </div>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100">
+                <div
+                    class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100">
                     <div class="flex text-gold-400 mb-3 text-sm">
                         <span>★★★★★</span>
                     </div>
-                    <p class="text-xs sm:text-sm text-gray-600 mb-4 italic">"Atifa Publication has helped me build an amazing Islamic library. Great customer service and authentic books."</p>
+                    <p class="text-xs sm:text-sm text-gray-600 mb-4 italic">"Atifa Publication has helped me build an
+                        amazing Islamic library. Great customer service and authentic books."</p>
                     <div class="flex items-center">
-                        <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm mr-3">
+                        <div
+                            class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm mr-3">
                             MY
                         </div>
                         <div>
@@ -348,10 +385,13 @@ $user = new User();
                 <div class="space-y-6">
                     <div>
                         <span class="text-emerald-600 font-semibold text-base sm:text-lg mb-2 block">Our Mission</span>
-                        <h2 class="text-3xl sm:text-4xl font-display font-bold text-gray-900 mb-4">Spreading Authentic Islamic Knowledge</h2>
+                        <h2 class="text-3xl sm:text-4xl font-display font-bold text-gray-900 mb-4">Spreading Authentic
+                            Islamic Knowledge</h2>
                         <p class="text-base sm:text-lg text-gray-600 leading-relaxed">
                             <strong>Assalamu alaykum</strong><br>
-                            বই জ্ঞানের আলো,হৃদয়ের সঙ্গী। আমরা বইকে দেখি শ্রেষ্ঠ উপহার হিসেবে,চিন্তাকে সমৃদ্ধ করে,জীবনের দিগন্ত প্রসারিত করে। আতিফা পাবলিকেশন আপনাদের হাতে পৌঁছে দিচ্ছে সেই অনন্য উপহার- বই,সমগ্র ভারত জুড়ে।
+                            বই জ্ঞানের আলো,হৃদয়ের সঙ্গী। আমরা বইকে দেখি শ্রেষ্ঠ উপহার হিসেবে,চিন্তাকে সমৃদ্ধ করে,জীবনের
+                            দিগন্ত প্রসারিত করে। আতিফা পাবলিকেশন আপনাদের হাতে পৌঁছে দিচ্ছে সেই অনন্য উপহার- বই,সমগ্র
+                            ভারত জুড়ে।
                             <br>
                             🌹Cash on delivery 🚚 Free Delivery 🎁
                         </p>
@@ -368,7 +408,8 @@ $user = new User();
                     </div>
                 </div>
                 <div class="relative">
-                    <div class="bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-2xl p-8 text-white relative overflow-hidden">
+                    <div
+                        class="bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-2xl p-8 text-white relative overflow-hidden">
                         <div class="relative z-10">
                             <h3 class="text-xl sm:text-2xl font-bold mb-4">Why Choose Atifa Publication?</h3>
                             <div class="space-y-3">
@@ -420,7 +461,8 @@ $user = new User();
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="text-center mb-12">
                 <h2 class="text-3xl sm:text-4xl font-display font-bold text-gray-900 mb-4">Get In Touch</h2>
-                <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">Have questions about our Islamic books or need personalized recommendations? We're here to help you on your learning journey.</p>
+                <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">Have questions about our Islamic books
+                    or need personalized recommendations? We're here to help you on your learning journey.</p>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <div>
@@ -496,6 +538,7 @@ $user = new User();
                                             d="M19.615 3.184a3.001 3.001 0 012.121 2.121C22 6.75 22 12 22 12s0 5.25-.264 6.695a3.001 3.001 0 01-2.121 2.121C18.25 21 12 21 12 21s-6.25 0-7.695-.264a3.001 3.001 0 01-2.121-2.121C2 17.25 2 12 2 12s0-5.25.264-6.695a3.001 3.001 0 012.121-2.121C5.75 3 12 3 12 3s6.25 0 7.615.184zM10 8.75v6.5L16 12l-6-3.25z" />
                                     </svg>
                                 </button>
+<<<<<<< HEAD
                             </a>
 
                             <!-- WhatsApp Community -->
@@ -507,6 +550,8 @@ $user = new User();
                                         <path d="M20.52 3.48A11.873 11.873 0 0012 0C5.372 0 0 5.372 0 12c0 2.121.556 4.102 1.524 5.832L0 24l6.408-1.518A11.936 11.936 0 0012 24c6.628 0 12-5.372 12-12 0-3.195-1.247-6.195-3.48-8.52zM12 21.818a9.822 9.822 0 01-5.163-1.469l-.37-.221-3.806.902.946-3.693-.239-.383A9.82 9.82 0 012.182 12 9.818 9.818 0 0112 2.182 9.818 9.818 0 0121.818 12 9.818 9.818 0 0112 21.818zm5.332-7.332c-.144-.072-1.065-.528-1.23-.588-.165-.06-.288-.072-.408.072s-.468.588-.576.708c-.108.12-.216.132-.396.048-.18-.084-.756-.276-1.44-.888-.532-.474-.892-1.062-.996-1.242-.108-.18-.012-.276.084-.36.084-.084.18-.216.264-.324.084-.108.108-.18.18-.3.072-.12.036-.216-.018-.288-.054-.072-.48-1.152-.66-1.584-.174-.432-.348-.372-.468-.378-.12-.006-.252-.006-.384-.006s-.288.036-.432.168c-.144.132-.552.54-.552 1.32s.564 1.536.644 1.644c.072.108 1.112 1.696 2.688 2.38 1.476.636 1.476.424 1.74.396.264-.024 1.065-.432 1.215-.852.144-.42.144-.78.108-.852-.036-.072-.132-.108-.276-.18z" />
                                     </svg>
                                 </button>
+=======
+>>>>>>> 22fd85cb99db39c11e0dcadcf3990bb8b4de7350
                             </a>
                         </div>
                     </div>
@@ -521,7 +566,8 @@ $user = new User();
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                 <div class="md:col-span-2">
                     <div class="flex items-center space-x-3 mb-4">
-                        <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-lg flex items-center justify-center">
+                        <div
+                            class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-lg flex items-center justify-center">
                             <span class="text-white text-base font-bold">📖</span>
                         </div>
                         <div>
@@ -530,7 +576,9 @@ $user = new User();
                         </div>
                     </div>
                     <p class="text-gray-300 text-xs sm:text-sm mb-4 max-w-md">
-                        বই জ্ঞানের আলো,হৃদয়ের সঙ্গী। আমরা বইকে দেখি শ্রেষ্ঠ উপহার হিসেবে,চিন্তাকে সমৃদ্ধ করে,জীবনের দিগন্ত প্রসারিত করে। আতিফা পাবলিকেশন আপনাদের হাতে পৌঁছে দিচ্ছে সেই অনন্য উপহার- বই,সমগ্র ভারত জুড়ে।
+                        বই জ্ঞানের আলো,হৃদয়ের সঙ্গী। আমরা বইকে দেখি শ্রেষ্ঠ উপহার হিসেবে,চিন্তাকে সমৃদ্ধ করে,জীবনের
+                        দিগন্ত প্রসারিত করে। আতিফা পাবলিকেশন আপনাদের হাতে পৌঁছে দিচ্ছে সেই অনন্য উপহার- বই,সমগ্র ভারত
+                        জুড়ে।
                     </p>
                 </div>
                 <div>
@@ -567,7 +615,7 @@ $user = new User();
 
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
