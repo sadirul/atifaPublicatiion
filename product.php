@@ -761,25 +761,36 @@ if (!$product) {
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const galleryContainer = document.getElementById("lightgallery");
-            lightGallery(galleryContainer, {
+
+            // Initialize lightGallery
+            const gallery = lightGallery(galleryContainer, {
                 plugins: [lgZoom, lgThumbnail],
                 speed: 400,
-                download: false
+                download: false,
+                dynamic: false
             });
 
-            const mainImage = document.getElementById("mainProductImage");
-            mainImage.addEventListener("click", () => {
-                galleryContainer.querySelector("a").click(); // open gallery at first image
-            });
-
-            document.querySelectorAll(".thumbnail-image").forEach((thumb, index) => {
-                thumb.addEventListener("click", () => {
-                    const items = galleryContainer.querySelectorAll("a");
-                    items[index]?.click(); // open gallery at selected thumbnail
+            // When any image in gallery is clicked, open that specific image
+            galleryContainer.querySelectorAll("a").forEach((anchor, index) => {
+                anchor.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    gallery.openGallery(index);
                 });
             });
+
+            // When main image is clicked, open the currently visible image
+            const mainImage = document.getElementById("mainProductImage");
+            if (mainImage) {
+                mainImage.addEventListener("click", () => {
+                    const currentImageSrc = mainImage.getAttribute("src");
+                    const allImages = Array.from(galleryContainer.querySelectorAll("a"));
+                    const currentIndex = allImages.findIndex(a => a.querySelector("img").getAttribute("src") === currentImageSrc);
+                    gallery.openGallery(currentIndex >= 0 ? currentIndex : 0);
+                });
+            }
         });
     </script>
+
 
 </body>
 
