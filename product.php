@@ -513,19 +513,19 @@ $reviewImages = array_column($reviewData, 'image_path'); // extract paths
 if (!empty($reviewImages)): 
 ?>
 <!-- Customer Review Images Section -->
-<section class="py-12 bg-emerald-50">
+<section class="py-12 bg-gradient-to-br from-emerald-50 to-white">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 text-center">
+        <h2 class="text-3xl font-extrabold text-gray-900 mb-10 text-center">
             Customer Review Images
         </h2>
 
-        <div class="relative overflow-hidden">
-            <div id="reviewTrack" class="flex transition-transform duration-700 ease-in-out">
+        <div class="relative overflow-hidden rounded-2xl shadow-lg">
+            <div id="reviewTrack" class="flex transition-transform duration-500 ease-in-out">
                 <?php foreach ($reviewImages as $img): ?>
-                    <div class="min-w-full flex justify-center">
+                    <div class="min-w-full flex justify-center px-2">
                         <img src="assets/uploads/reviews/<?= htmlspecialchars($img) ?>"
                              alt="Customer Review"
-                             class="w-auto h-80 object-cover rounded-2xl shadow-md cursor-pointer hover:scale-105 transition-transform"
+                             class="w-full max-w-md h-80 object-cover rounded-2xl shadow-lg cursor-pointer hover:scale-105 transition-transform"
                              onclick="openReviewGallery('assets/uploads/reviews/<?= htmlspecialchars($img) ?>')">
                     </div>
                 <?php endforeach; ?>
@@ -533,10 +533,10 @@ if (!empty($reviewImages)):
 
             <!-- Carousel Controls -->
             <?php if(count($reviewImages) > 1): ?>
-            <button id="prevReview" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-md rounded-full w-10 h-10 flex items-center justify-center hover:bg-emerald-100 text-xl font-bold shadow">
+            <button id="prevReview" class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-md rounded-full w-12 h-12 flex items-center justify-center hover:bg-emerald-200 text-2xl font-bold shadow-md">
                 ‹
             </button>
-            <button id="nextReview" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-md rounded-full w-10 h-10 flex items-center justify-center hover:bg-emerald-100 text-xl font-bold shadow">
+            <button id="nextReview" class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-md rounded-full w-12 h-12 flex items-center justify-center hover:bg-emerald-200 text-2xl font-bold shadow-md">
                 ›
             </button>
             <?php endif; ?>
@@ -545,9 +545,9 @@ if (!empty($reviewImages)):
 </section>
 
 <!-- Lightbox for Review Images -->
-<div id="reviewLightbox" class="hidden fixed inset-0 bg-black/80 z-50 flex items-center justify-center">
-    <img id="reviewLightboxImage" src="" class="max-h-[80vh] max-w-[90vw] rounded-xl shadow-lg border-4 border-white">
-    <button onclick="closeReviewGallery()" class="absolute top-4 right-6 text-white text-3xl font-bold">&times;</button>
+<div id="reviewLightbox" class="hidden fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
+    <img id="reviewLightboxImage" src="" class="max-h-[80vh] max-w-[90vw] rounded-xl shadow-2xl border-4 border-white">
+    <button onclick="closeReviewGallery()" class="absolute top-4 right-6 text-white text-4xl font-bold hover:text-gray-300">&times;</button>
 </div>
 
 <script>
@@ -582,7 +582,6 @@ if (!empty($reviewImages)):
     }
 </script>
 <?php endif; ?>
-
 
 
     <!-- Footer -->
