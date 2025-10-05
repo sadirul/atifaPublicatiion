@@ -56,33 +56,73 @@ $user = new User();
                     },
                     keyframes: {
                         float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-8px)' }
+                            '0%, 100%': {
+                                transform: 'translateY(0px)'
+                            },
+                            '50%': {
+                                transform: 'translateY(-8px)'
+                            }
                         },
                         'fade-in': {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' }
+                            '0%': {
+                                opacity: '0'
+                            },
+                            '100%': {
+                                opacity: '1'
+                            }
                         },
                         'slide-up': {
-                            '0%': { transform: 'translateY(16px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                            '0%': {
+                                transform: 'translateY(16px)',
+                                opacity: '0'
+                            },
+                            '100%': {
+                                transform: 'translateY(0)',
+                                opacity: '1'
+                            }
                         },
                         'scale-in': {
-                            '0%': { transform: 'scale(0.95)', opacity: '0' },
-                            '100%': { transform: 'scale(1)', opacity: '1' }
+                            '0%': {
+                                transform: 'scale(0.95)',
+                                opacity: '0'
+                            },
+                            '100%': {
+                                transform: 'scale(1)',
+                                opacity: '1'
+                            }
                         }
                     },
-                    backdropBlur: { xs: '2px' },
+                    backdropBlur: {
+                        xs: '2px'
+                    },
                     fontSize: {
-                        'xs': ['0.75rem', { lineHeight: '1rem' }],
-                        'sm': ['0.875rem', { lineHeight: '1.25rem' }],
-                        'base': ['1rem', { lineHeight: '1.5rem' }],
-                        'lg': ['1.125rem', { lineHeight: '1.75rem' }],
-                        'xl': ['1.25rem', { lineHeight: '1.75rem' }],
-                        '2xl': ['1.5rem', { lineHeight: '2rem' }],
-                        '3xl': ['1.875rem', { lineHeight: '2.25rem' }],
-                        '4xl': ['2.25rem', { lineHeight: '2.5rem' }],
-                        '5xl': ['3rem', { lineHeight: '1' }],
+                        'xs': ['0.75rem', {
+                            lineHeight: '1rem'
+                        }],
+                        'sm': ['0.875rem', {
+                            lineHeight: '1.25rem'
+                        }],
+                        'base': ['1rem', {
+                            lineHeight: '1.5rem'
+                        }],
+                        'lg': ['1.125rem', {
+                            lineHeight: '1.75rem'
+                        }],
+                        'xl': ['1.25rem', {
+                            lineHeight: '1.75rem'
+                        }],
+                        '2xl': ['1.5rem', {
+                            lineHeight: '2rem'
+                        }],
+                        '3xl': ['1.875rem', {
+                            lineHeight: '2.25rem'
+                        }],
+                        '4xl': ['2.25rem', {
+                            lineHeight: '2.5rem'
+                        }],
+                        '5xl': ['3rem', {
+                            lineHeight: '1'
+                        }],
                     }
                 }
             }
@@ -430,8 +470,43 @@ $user = new User();
                     <div class="bg-gradient-to-br from-gold-50 to-gold-100 p-6 rounded-2xl">
                         <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Follow Us</h3>
                         <div class="flex space-x-4">
-                            <a href="https://www.facebook.com/share/1EQ4svM5qE/" target="_blank" rel="noopener noreferrer">
-                                <button class="w-10 h-10 bg-blue-500 text-white rounded-lg hover:scale-105 transition-transform">f</button>
+                            <!-- Facebook -->
+                            <a href="https://www.facebook.com/Atifapublicationin" target="_blank"
+                                rel="noopener noreferrer">
+                                <button
+                                    class="w-10 h-10 bg-blue-500 text-white rounded-lg hover:scale-105 transition-transform flex items-center justify-center">
+                                    <!-- Facebook SVG -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                        class="w-5 h-5">
+                                        <path
+                                            d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.891h-2.33v6.987C18.343 21.128 22 16.991 22 12z" />
+                                    </svg>
+                                </button>
+                            </a>
+
+                            <!-- YouTube -->
+                            <a href="https://www.youtube.com/@atifapublication" target="_blank"
+                                rel="noopener noreferrer">
+                                <button
+                                    class="w-10 h-10 bg-red-600 text-white rounded-lg hover:scale-105 transition-transform flex items-center justify-center">
+                                    <!-- YouTube SVG -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                        class="w-5 h-5">
+                                        <path
+                                            d="M19.615 3.184a3.001 3.001 0 012.121 2.121C22 6.75 22 12 22 12s0 5.25-.264 6.695a3.001 3.001 0 01-2.121 2.121C18.25 21 12 21 12 21s-6.25 0-7.695-.264a3.001 3.001 0 01-2.121-2.121C2 17.25 2 12 2 12s0-5.25.264-6.695a3.001 3.001 0 012.121-2.121C5.75 3 12 3 12 3s6.25 0 7.615.184zM10 8.75v6.5L16 12l-6-3.25z" />
+                                    </svg>
+                                </button>
+                            </a>
+
+                            <!-- WhatsApp Community -->
+                            <a href="https://chat.whatsapp.com/FK50qsZH66699EBn1zMALB?mode=ems_wa_t" target="_blank"
+                                rel="noopener noreferrer">
+                                <button
+                                    class="w-10 h-10 bg-green-500 text-white rounded-lg hover:scale-105 transition-transform flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                        <path d="M20.52 3.48A11.873 11.873 0 0012 0C5.372 0 0 5.372 0 12c0 2.121.556 4.102 1.524 5.832L0 24l6.408-1.518A11.936 11.936 0 0012 24c6.628 0 12-5.372 12-12 0-3.195-1.247-6.195-3.48-8.52zM12 21.818a9.822 9.822 0 01-5.163-1.469l-.37-.221-3.806.902.946-3.693-.239-.383A9.82 9.82 0 012.182 12 9.818 9.818 0 0112 2.182 9.818 9.818 0 0121.818 12 9.818 9.818 0 0112 21.818zm5.332-7.332c-.144-.072-1.065-.528-1.23-.588-.165-.06-.288-.072-.408.072s-.468.588-.576.708c-.108.12-.216.132-.396.048-.18-.084-.756-.276-1.44-.888-.532-.474-.892-1.062-.996-1.242-.108-.18-.012-.276.084-.36.084-.084.18-.216.264-.324.084-.108.108-.18.18-.3.072-.12.036-.216-.018-.288-.054-.072-.48-1.152-.66-1.584-.174-.432-.348-.372-.468-.378-.12-.006-.252-.006-.384-.006s-.288.036-.432.168c-.144.132-.552.54-.552 1.32s.564 1.536.644 1.644c.072.108 1.112 1.696 2.688 2.38 1.476.636 1.476.424 1.74.396.264-.024 1.065-.432 1.215-.852.144-.42.144-.78.108-.852-.036-.072-.132-.108-.276-.18z" />
+                                    </svg>
+                                </button>
                             </a>
                         </div>
                     </div>
@@ -496,7 +571,10 @@ $user = new User();
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
                 mobileMenu.classList.add('hidden');
             });
@@ -524,7 +602,10 @@ $user = new User();
         });
 
         // Intersection Observer for animations
-        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {

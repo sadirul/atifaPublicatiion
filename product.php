@@ -194,6 +194,13 @@ if (!$product) {
         }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/css/lightgallery-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/lightgallery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/zoom/lg-zoom.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/thumbnail/lg-thumbnail.min.js"></script>
+
 </head>
 
 <body class="font-sans bg-gray-50 overflow-x-hidden">
@@ -220,8 +227,13 @@ if (!$product) {
                             }
                             $mainImage = $images[0]['image'];
                             ?>
-                            <img id="mainProductImage" src="assets/uploads/products/<?= htmlspecialchars($mainImage) ?>" alt="<?= htmlspecialchars($product['title']) ?>" class="w-full h-full rounded-2xl object-cover lazy" data-src="assets/uploads/products/<?= htmlspecialchars($mainImage) ?>">
+                            <img id="mainProductImage"
+                                src="assets/uploads/products/<?= htmlspecialchars($mainImage) ?>"
+                                alt="<?= htmlspecialchars($product['title']) ?>"
+                                class="w-full h-full rounded-2xl object-cover cursor-pointer"
+                                data-src="assets/uploads/products/<?= htmlspecialchars($mainImage) ?>">
                         </div>
+
                         <?php if (!empty($product['is_bestseller'])): ?>
                             <div class="absolute top-3 right-3">
                                 <span class="bg-gold-500 text-emerald-900 px-3 py-1 rounded-full text-xs font-bold shadow-md animate-pulse-slow">
@@ -230,15 +242,29 @@ if (!$product) {
                             </div>
                         <?php endif; ?>
                     </div>
+
                     <!-- Thumbnails -->
                     <div class="flex space-x-3 overflow-x-auto py-2">
                         <?php foreach ($images as $img): ?>
                             <div class="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 cursor-pointer hover:border-emerald-500 transition-all">
-                                <img src="assets/uploads/products/<?= htmlspecialchars($img['image']) ?>" alt="<?= htmlspecialchars($product['title']) ?>" class="w-full h-full object-cover thumbnail-image lazy" data-src="assets/uploads/products/<?= htmlspecialchars($img['image']) ?>">
+                                <img src="assets/uploads/products/<?= htmlspecialchars($img['image']) ?>"
+                                    alt="<?= htmlspecialchars($product['title']) ?>"
+                                    class="w-full h-full object-cover thumbnail-image"
+                                    data-full="assets/uploads/products/<?= htmlspecialchars($img['image']) ?>">
                             </div>
                         <?php endforeach; ?>
                     </div>
+
+                    <!-- Hidden gallery container -->
+                    <div id="lightgallery" class="hidden">
+                        <?php foreach ($images as $img): ?>
+                            <a href="assets/uploads/products/<?= htmlspecialchars($img['image']) ?>">
+                                <img src="assets/uploads/products/<?= htmlspecialchars($img['image']) ?>" alt="">
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
+
 
                 <!-- Product Information -->
                 <div class="space-y-6">
@@ -324,7 +350,7 @@ if (!$product) {
                                 class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-100 focus:border-emerald-500 transition-all">
                         </div> -->
 
-                        <!-- Village/City -->
+                        <!-- Village -->
                         <div class="mb-3">
                             <label class="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">Village *</label>
                             <input type="text" name="city" required placeholder="Village"
@@ -731,6 +757,30 @@ if (!$product) {
         console.log('🕌 Atifa Publication - Modern Islamic Literature Store Loaded Successfully');
         console.log('📖 May Allah bless your journey of seeking knowledge');
     </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const galleryContainer = document.getElementById("lightgallery");
+            lightGallery(galleryContainer, {
+                plugins: [lgZoom, lgThumbnail],
+                speed: 400,
+                download: false
+            });
+
+            const mainImage = document.getElementById("mainProductImage");
+            mainImage.addEventListener("click", () => {
+                galleryContainer.querySelector("a").click(); // open gallery at first image
+            });
+
+            document.querySelectorAll(".thumbnail-image").forEach((thumb, index) => {
+                thumb.addEventListener("click", () => {
+                    const items = galleryContainer.querySelectorAll("a");
+                    items[index]?.click(); // open gallery at selected thumbnail
+                });
+            });
+        });
+    </script>
+
 </body>
 
 </html>
