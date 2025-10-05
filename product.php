@@ -318,16 +318,16 @@ if (!$product) {
                         </h3>
 
                         <!-- Flat/House No. -->
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <label class="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">Flat/House No.</label>
                             <input type="text" name="flat_no" placeholder="Flat/House No."
                                 class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-100 focus:border-emerald-500 transition-all">
-                        </div>
+                        </div> -->
 
                         <!-- Village/City -->
                         <div class="mb-3">
-                            <label class="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">Village/City *</label>
-                            <input type="text" name="city" required placeholder="Village/City"
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">Village *</label>
+                            <input type="text" name="city" required placeholder="Village"
                                 class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-100 focus:border-emerald-500 transition-all">
                         </div>
 

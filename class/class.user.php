@@ -630,24 +630,33 @@ class USER
     {
         $video_id = false;
         $url = parse_url($url);
-        if (strcasecmp($url['host'], 'youtu.be') === 0) {
-            $video_id = substr($url['path'], 1);
-        } elseif (strcasecmp($url['host'], 'www.youtube.com') === 0) {
+
+        // Handle youtu.be short links
+        if (isset($url['host']) && strcasecmp($url['host'], 'youtu.be') === 0) {
+            $video_id = ltrim($url['path'], '/');
+        }
+
+        // Handle youtube.com links
+        elseif (isset($url['host']) && in_array(strtolower($url['host']), ['youtube.com', 'www.youtube.com'])) {
             if (isset($url['query'])) {
-                parse_str($url['query'], $url['query']);
-                if (isset($url['query']['v'])) {
-                    $video_id = $url['query']['v'];
+                parse_str($url['query'], $query);
+                if (!empty($query['v'])) {
+                    $video_id = $query['v'];
                 }
             }
-            if ($video_id == false) {
-                $url['path'] = explode('/', substr($url['path'], 1));
-                if (in_array($url['path'][0], array('e', 'embed', 'v'))) {
-                    $video_id = $url['path'][1];
+
+            // Handle /embed/, /v/, /e/, /shorts/ etc.
+            if ($video_id === false && isset($url['path'])) {
+                $pathSegments = explode('/', trim($url['path'], '/'));
+                if (!empty($pathSegments[0]) && in_array($pathSegments[0], ['e', 'embed', 'v', 'shorts'])) {
+                    $video_id = $pathSegments[1] ?? false;
                 }
             }
         }
+
         return $video_id;
     }
+
     //GET DATE FUNCTION
     public function get_date($type)
     {

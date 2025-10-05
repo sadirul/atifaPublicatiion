@@ -44,7 +44,8 @@ if (!$user->isLogedin()) {
                             $page = $user->pagination(100, $totalRow);
 
                             // Fetch paginated orders with product info
-                            $sql = "SELECT orders.*, products.*, orders.id as order_id 
+                            $sql = "SELECT orders.*, products.*, orders.id as order_id, 
+                            orders.created_at as order_date
                             FROM orders 
                             LEFT JOIN products ON orders.product_id = products.id 
                             ORDER BY orders.id DESC 
@@ -97,7 +98,7 @@ if (!$user->isLogedin()) {
                                                     <strong>Near: </strong> <?php echo htmlspecialchars($order['near']); ?><br>
                                                 <?php endif; ?>
                                                 <hr />
-                                                <strong>Date: </strong><?php echo $user->dateFormat('d M Y | h:i:s a', htmlspecialchars($order['created_at'])); ?>
+                                                <strong>Date: </strong><?php echo $user->dateFormat('d M Y | h:i:s a', htmlspecialchars($order['order_date'])); ?>
                                             </td>
 
                                             <td class="space-x-2">
