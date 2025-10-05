@@ -33,6 +33,12 @@
                 <span>Orders</span>
             </a>
         </li>
+        <li>
+            <a href="upload_review.php" class="waves-effect">
+                <i class="zmdi zmdi-star"></i>
+                <span>Review Images</span>
+            </a>
+        </li>
 
     </ul>
 

@@ -503,6 +503,87 @@ if (!$product) {
             </div>
         </div>
     </section>
+<?php
+// Fetch review images from database
+$user->query("SELECT image_path FROM product_reviews WHERE product_id = :pid AND image_path IS NOT NULL");
+$user->bind(':pid', $product['id']);
+$reviewData = $user->fetchAll(); // fetch associative array
+$reviewImages = array_column($reviewData, 'image_path'); // extract paths
+
+if (!empty($reviewImages)): 
+?>
+<!-- Customer Review Images Section -->
+<section class="py-12 bg-emerald-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 text-center">
+            Customer Review Images
+        </h2>
+
+        <div class="relative overflow-hidden">
+            <div id="reviewTrack" class="flex transition-transform duration-700 ease-in-out">
+                <?php foreach ($reviewImages as $img): ?>
+                    <div class="min-w-full flex justify-center">
+                        <img src="assets/uploads/reviews/<?= htmlspecialchars($img) ?>"
+                             alt="Customer Review"
+                             class="w-auto h-80 object-cover rounded-2xl shadow-md cursor-pointer hover:scale-105 transition-transform"
+                             onclick="openReviewGallery('assets/uploads/reviews/<?= htmlspecialchars($img) ?>')">
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <!-- Carousel Controls -->
+            <?php if(count($reviewImages) > 1): ?>
+            <button id="prevReview" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-md rounded-full w-10 h-10 flex items-center justify-center hover:bg-emerald-100 text-xl font-bold shadow">
+                ‹
+            </button>
+            <button id="nextReview" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-md rounded-full w-10 h-10 flex items-center justify-center hover:bg-emerald-100 text-xl font-bold shadow">
+                ›
+            </button>
+            <?php endif; ?>
+        </div>
+    </div>
+</section>
+
+<!-- Lightbox for Review Images -->
+<div id="reviewLightbox" class="hidden fixed inset-0 bg-black/80 z-50 flex items-center justify-center">
+    <img id="reviewLightboxImage" src="" class="max-h-[80vh] max-w-[90vw] rounded-xl shadow-lg border-4 border-white">
+    <button onclick="closeReviewGallery()" class="absolute top-4 right-6 text-white text-3xl font-bold">&times;</button>
+</div>
+
+<script>
+    const reviews = document.querySelectorAll('#reviewTrack > div');
+    let currentReview = 0;
+
+    function showReview(index) {
+        const offset = -index * 100;
+        document.getElementById('reviewTrack').style.transform = `translateX(${offset}%)`;
+    }
+
+    const prevBtn = document.getElementById('prevReview');
+    const nextBtn = document.getElementById('nextReview');
+
+    if(prevBtn && nextBtn){
+        prevBtn.addEventListener('click', () => {
+            currentReview = (currentReview - 1 + reviews.length) % reviews.length;
+            showReview(currentReview);
+        });
+        nextBtn.addEventListener('click', () => {
+            currentReview = (currentReview + 1) % reviews.length;
+            showReview(currentReview);
+        });
+    }
+
+    function openReviewGallery(src) {
+        document.getElementById('reviewLightboxImage').src = src;
+        document.getElementById('reviewLightbox').classList.remove('hidden');
+    }
+    function closeReviewGallery() {
+        document.getElementById('reviewLightbox').classList.add('hidden');
+    }
+</script>
+<?php endif; ?>
+
+
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12">
