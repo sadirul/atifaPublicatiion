@@ -88,7 +88,7 @@ if (!$user->isLogedin()) {
                                                 <?php if (!empty($order['flat_no'])) : ?>
                                                     <strong>Flat No: </strong> <?php echo htmlspecialchars($order['flat_no']); ?><br>
                                                 <?php endif; ?>
-                                                <strong>City: </strong> <?php echo htmlspecialchars($order['city']); ?><br>
+                                                <strong>Village: </strong> <?php echo htmlspecialchars($order['city']); ?><br>
                                                 <strong>Post: </strong> <?php echo htmlspecialchars($order['po']); ?><br>
                                                 <strong>PS: </strong> <?php echo htmlspecialchars($order['ps']); ?><br>
                                                 <strong>District: </strong> <?php echo htmlspecialchars($order['district']); ?><br>
