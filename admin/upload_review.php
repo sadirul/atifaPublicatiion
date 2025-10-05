@@ -52,6 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $user->execute();
 
                 $user->set_alert("Image uploaded successfully!", 'success');
+                    // Redirect to prevent resubmission
+                header("Location: " . $_SERVER['PHP_SELF']);
+                exit();
             } else {
                 $user->set_alert("Error uploading file.", 'error');
             }
@@ -85,6 +88,13 @@ $reviews = $user->fetchAll();
 <body class="bg-gradient-to-br from-emerald-50 to-teal-50 min-h-screen py-4 sm:py-8">
 
     <div class="max-w-6xl mx-auto px-3 sm:px-4">
+        <?php if (!empty($user->alert)): ?>
+        <div class="mb-4 p-4 rounded-lg 
+        <?= $user->alert['type'] === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' ?>">
+        <?= htmlspecialchars($user->alert['message']) ?>
+    </div>
+<?php endif; ?>
+
         <!-- Header -->
         <div class="text-center mb-6 sm:mb-10">
             <h1 class="text-2xl sm:text-4xl font-bold text-emerald-800 mb-2 sm:mb-3">
