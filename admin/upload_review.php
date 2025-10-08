@@ -2,6 +2,11 @@
 require_once '../class/class.user.php';
 $user = new User();
 
+if (!$user->isLogedin()) {
+    $user->redirect('login.php');
+    exit();
+}
+
 if (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
     $review_id = $_GET['delete'];
 
