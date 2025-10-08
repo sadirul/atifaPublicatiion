@@ -201,6 +201,33 @@ if (!$product) {
     <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/zoom/lg-zoom.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/thumbnail/lg-thumbnail.min.js"></script>
 
+
+    <!-- Meta Pixel Code -->
+    <script>
+        ! function(f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function() {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1186440809995116');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=1186440809995116&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
 </head>
 
 <body class="font-sans bg-gray-50 overflow-x-hidden">
@@ -503,85 +530,86 @@ if (!$product) {
             </div>
         </div>
     </section>
-<?php
-// Fetch review images from database
-$user->query("SELECT image_path FROM product_reviews WHERE product_id = :pid AND image_path IS NOT NULL");
-$user->bind(':pid', $product['id']);
-$reviewData = $user->fetchAll(); // fetch associative array
-$reviewImages = array_column($reviewData, 'image_path'); // extract paths
+    <?php
+    // Fetch review images from database
+    $user->query("SELECT image_path FROM product_reviews WHERE product_id = :pid AND image_path IS NOT NULL");
+    $user->bind(':pid', $product['id']);
+    $reviewData = $user->fetchAll(); // fetch associative array
+    $reviewImages = array_column($reviewData, 'image_path'); // extract paths
 
-if (!empty($reviewImages)): 
-?>
-<!-- Customer Review Images Section -->
-<section class="py-12 bg-gradient-to-br from-emerald-50 to-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
-        <h2 class="text-3xl font-extrabold text-gray-900 mb-10 text-center">
-            Customer Review Images
-        </h2>
+    if (!empty($reviewImages)):
+    ?>
+        <!-- Customer Review Images Section -->
+        <section class="py-12 bg-gradient-to-br from-emerald-50 to-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6">
+                <h2 class="text-3xl font-extrabold text-gray-900 mb-10 text-center">
+                    Customer Review Images
+                </h2>
 
-        <div class="relative overflow-hidden rounded-2xl shadow-lg">
-            <div id="reviewTrack" class="flex transition-transform duration-500 ease-in-out">
-                <?php foreach ($reviewImages as $img): ?>
-                    <div class="min-w-full flex justify-center px-2">
-                        <img src="assets/uploads/reviews/<?= htmlspecialchars($img) ?>"
-                             alt="Customer Review"
-                             class="w-full max-w-md h-80 object-cover rounded-2xl shadow-lg cursor-pointer hover:scale-105 transition-transform"
-                             onclick="openReviewGallery('assets/uploads/reviews/<?= htmlspecialchars($img) ?>')">
+                <div class="relative overflow-hidden rounded-2xl shadow-lg">
+                    <div id="reviewTrack" class="flex transition-transform duration-500 ease-in-out">
+                        <?php foreach ($reviewImages as $img): ?>
+                            <div class="min-w-full flex justify-center px-2">
+                                <img src="assets/uploads/reviews/<?= htmlspecialchars($img) ?>"
+                                    alt="Customer Review"
+                                    class="w-full max-w-md h-80 object-cover rounded-2xl shadow-lg cursor-pointer hover:scale-105 transition-transform"
+                                    onclick="openReviewGallery('assets/uploads/reviews/<?= htmlspecialchars($img) ?>')">
+                            </div>
+                        <?php endforeach; ?>
                     </div>
-                <?php endforeach; ?>
+
+                    <!-- Carousel Controls -->
+                    <?php if (count($reviewImages) > 1): ?>
+                        <button id="prevReview" class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-md rounded-full w-12 h-12 flex items-center justify-center hover:bg-emerald-200 text-2xl font-bold shadow-md">
+                            ‹
+                        </button>
+                        <button id="nextReview" class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-md rounded-full w-12 h-12 flex items-center justify-center hover:bg-emerald-200 text-2xl font-bold shadow-md">
+                            ›
+                        </button>
+                    <?php endif; ?>
+                </div>
             </div>
+        </section>
 
-            <!-- Carousel Controls -->
-            <?php if(count($reviewImages) > 1): ?>
-            <button id="prevReview" class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-md rounded-full w-12 h-12 flex items-center justify-center hover:bg-emerald-200 text-2xl font-bold shadow-md">
-                ‹
-            </button>
-            <button id="nextReview" class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-md rounded-full w-12 h-12 flex items-center justify-center hover:bg-emerald-200 text-2xl font-bold shadow-md">
-                ›
-            </button>
-            <?php endif; ?>
+        <!-- Lightbox for Review Images -->
+        <div id="reviewLightbox" class="hidden fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
+            <img id="reviewLightboxImage" src="" class="max-h-[80vh] max-w-[90vw] rounded-xl shadow-2xl border-4 border-white">
+            <button onclick="closeReviewGallery()" class="absolute top-4 right-6 text-white text-4xl font-bold hover:text-gray-300">&times;</button>
         </div>
-    </div>
-</section>
 
-<!-- Lightbox for Review Images -->
-<div id="reviewLightbox" class="hidden fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-    <img id="reviewLightboxImage" src="" class="max-h-[80vh] max-w-[90vw] rounded-xl shadow-2xl border-4 border-white">
-    <button onclick="closeReviewGallery()" class="absolute top-4 right-6 text-white text-4xl font-bold hover:text-gray-300">&times;</button>
-</div>
+        <script>
+            const reviews = document.querySelectorAll('#reviewTrack > div');
+            let currentReview = 0;
 
-<script>
-    const reviews = document.querySelectorAll('#reviewTrack > div');
-    let currentReview = 0;
+            function showReview(index) {
+                const offset = -index * 100;
+                document.getElementById('reviewTrack').style.transform = `translateX(${offset}%)`;
+            }
 
-    function showReview(index) {
-        const offset = -index * 100;
-        document.getElementById('reviewTrack').style.transform = `translateX(${offset}%)`;
-    }
+            const prevBtn = document.getElementById('prevReview');
+            const nextBtn = document.getElementById('nextReview');
 
-    const prevBtn = document.getElementById('prevReview');
-    const nextBtn = document.getElementById('nextReview');
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', () => {
+                    currentReview = (currentReview - 1 + reviews.length) % reviews.length;
+                    showReview(currentReview);
+                });
+                nextBtn.addEventListener('click', () => {
+                    currentReview = (currentReview + 1) % reviews.length;
+                    showReview(currentReview);
+                });
+            }
 
-    if(prevBtn && nextBtn){
-        prevBtn.addEventListener('click', () => {
-            currentReview = (currentReview - 1 + reviews.length) % reviews.length;
-            showReview(currentReview);
-        });
-        nextBtn.addEventListener('click', () => {
-            currentReview = (currentReview + 1) % reviews.length;
-            showReview(currentReview);
-        });
-    }
+            function openReviewGallery(src) {
+                document.getElementById('reviewLightboxImage').src = src;
+                document.getElementById('reviewLightbox').classList.remove('hidden');
+            }
 
-    function openReviewGallery(src) {
-        document.getElementById('reviewLightboxImage').src = src;
-        document.getElementById('reviewLightbox').classList.remove('hidden');
-    }
-    function closeReviewGallery() {
-        document.getElementById('reviewLightbox').classList.add('hidden');
-    }
-</script>
-<?php endif; ?>
+            function closeReviewGallery() {
+                document.getElementById('reviewLightbox').classList.add('hidden');
+            }
+        </script>
+    <?php endif; ?>
 
 
     <!-- Footer -->
