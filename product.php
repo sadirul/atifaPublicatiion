@@ -5,7 +5,7 @@ $user = new User();
 // Get product ID from URL
 if (!isset($_GET['product_id']) || empty($_GET['product_id'])) {
     $user->set_alert("Invalid Product ID.", 'error');
-    $user->redirect('index.php');
+    $user->redirect('/index.php');
     exit();
 }
 
@@ -18,7 +18,7 @@ $product = $user->fetchOne();
 
 if (!$product) {
     $user->set_alert("Product not found.", 'error');
-    $user->redirect('index.php');
+    $user->redirect('/index.php');
     exit();
 }
 ?>
@@ -323,19 +323,37 @@ if (!$product) {
         </div>
     </section>
     <?php if (!empty($product['embed_link'])): ?>
-        <div class="border-t border-gray-200 flex justify-center p-5">
+        <!-- <div class="border-t border-gray-200 flex justify-center p-5">
             <iframe
                 class="rounded-xl overflow-hidden"
                 width="560"
                 height="315"
-                src="https://www.youtube.com/embed/<?php echo $product['embed_link']; ?>?autoplay=1&mute=1"
+                src="https://www.youtube.com/embed/<?php //echo $product['embed_link']; 
+                                                    ?>?autoplay=1&mute=1"
                 title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin"
                 allowfullscreen>
             </iframe>
+        </div> -->
+
+        <div style="display:flex; justify-content:center; align-items:center; min-height:100vh; background-color:#f9f9f9;">
+            <div style="position:relative;width:315px;height:560px;overflow:hidden;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+                <iframe
+                    width="315"
+                    height="560"
+                    src="https://www.youtube.com/embed/<?php echo $product['embed_link']; ?>"
+                    title="YouTube Shorts"
+                    frameborder="0"
+                    style="position:absolute;top:0;left:0;width:100%;height:100%;"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+            </div>
         </div>
+
+
     <?php endif; ?>
 
     <!-- Order Form Section -->
