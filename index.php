@@ -277,7 +277,7 @@ $user = new User();
                                 <?php endif; ?>
                             </div>
                             <div class="p-4">
-                                <a href="product.php?product_id=<?= md5($row['id']) ?>">
+                                <a href="product/<?= md5($row['id']) ?>">
                                     <h3
                                         class="text-base sm:text-lg font-semibold text-gray-900 mb-2 group-hover:text-emerald-600 transition-colors">
                                         <?= htmlspecialchars($row['title']) ?>
@@ -298,7 +298,7 @@ $user = new User();
                                         <span><?= str_repeat('★', $rating) ?><?= str_repeat('☆', 5 - $rating) ?></span>
                                     </div>
                                 </div>
-                                <a href="product.php?product_id=<?= md5($row['id']) ?>"
+                                <a href="product/<?= md5($row['id']) ?>"
                                     class="w-full bg-emerald-600 text-white py-2 px-4 rounded-lg hover:bg-emerald-700 transition-all duration-300 font-medium text-sm sm:text-base">
                                     Buy Now
                                 </a>

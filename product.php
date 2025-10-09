@@ -30,8 +30,8 @@ if (!$product) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#059669">
-    <link rel="icon" href="assets/static/images/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="assets/static/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/assets/static/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/assets/static/images/favicon.ico" type="image/x-icon">
     <title><?php echo htmlspecialchars($product['title']); ?> - Atifa Publication Islamic Literature Store</title>
 
     <!-- SEO Meta Tags -->
@@ -255,10 +255,10 @@ if (!$product) {
                             $mainImage = $images[0]['image'];
                             ?>
                             <img id="mainProductImage"
-                                src="assets/uploads/products/<?= htmlspecialchars($mainImage) ?>"
+                                src="/assets/uploads/products/<?= htmlspecialchars($mainImage) ?>"
                                 alt="<?= htmlspecialchars($product['title']) ?>"
                                 class="w-full h-full rounded-2xl object-cover cursor-pointer"
-                                data-src="assets/uploads/products/<?= htmlspecialchars($mainImage) ?>">
+                                data-src="/assets/uploads/products/<?= htmlspecialchars($mainImage) ?>">
                         </div>
 
                         <?php if (!empty($product['is_bestseller'])): ?>
@@ -274,10 +274,10 @@ if (!$product) {
                     <div class="flex space-x-3 overflow-x-auto py-2">
                         <?php foreach ($images as $img): ?>
                             <div class="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 cursor-pointer hover:border-emerald-500 transition-all">
-                                <img src="assets/uploads/products/<?= htmlspecialchars($img['image']) ?>"
+                                <img src="/assets/uploads/products/<?= htmlspecialchars($img['image']) ?>"
                                     alt="<?= htmlspecialchars($product['title']) ?>"
                                     class="w-full h-full object-cover thumbnail-image"
-                                    data-full="assets/uploads/products/<?= htmlspecialchars($img['image']) ?>">
+                                    data-full="/assets/uploads/products/<?= htmlspecialchars($img['image']) ?>">
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -285,8 +285,8 @@ if (!$product) {
                     <!-- Hidden gallery container -->
                     <div id="lightgallery" class="hidden">
                         <?php foreach ($images as $img): ?>
-                            <a href="assets/uploads/products/<?= htmlspecialchars($img['image']) ?>">
-                                <img src="assets/uploads/products/<?= htmlspecialchars($img['image']) ?>" alt="">
+                            <a href="/assets/uploads/products/<?= htmlspecialchars($img['image']) ?>">
+                                <img src="/assets/uploads/products/<?= htmlspecialchars($img['image']) ?>" alt="">
                             </a>
                         <?php endforeach; ?>
                     </div>
@@ -550,10 +550,10 @@ if (!$product) {
                     <div id="reviewTrack" class="flex transition-transform duration-500 ease-in-out">
                         <?php foreach ($reviewImages as $img): ?>
                             <div class="min-w-full flex justify-center px-2">
-                                <img src="assets/uploads/reviews/<?= htmlspecialchars($img) ?>"
+                                <img src="/assets/uploads/reviews/<?= htmlspecialchars($img) ?>"
                                     alt="Customer Review"
                                     class="w-full max-w-md h-80 object-cover rounded-2xl shadow-lg cursor-pointer hover:scale-105 transition-transform"
-                                    onclick="openReviewGallery('assets/uploads/reviews/<?= htmlspecialchars($img) ?>')">
+                                    onclick="openReviewGallery('/assets/uploads/reviews/<?= htmlspecialchars($img) ?>')">
                             </div>
                         <?php endforeach; ?>
                     </div>
