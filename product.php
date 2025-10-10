@@ -365,7 +365,7 @@ if (!$product) {
                     <p class="text-sm sm:text-base text-emerald-100">Fill in your details to order <?php echo htmlspecialchars($product['title']); ?></p>
                 </div>
                 <?php echo $user->get_alert(); ?>
-                <form class="p-6 space-y-6" id="orderForm" action="action/buy.action.php" method="POST">
+                <form class="p-6 space-y-6" id="orderForm" action="/action/buy.action.php" method="POST">
                     <div>
                         <h3 class="text-lg sm:text-xl font-semibold text-gray-900 mb-4 flex items-center">
                             <span class="w-6 h-6 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-sm font-bold mr-2">1</span>
@@ -691,7 +691,7 @@ if (!$product) {
 
                 const formData = new FormData(this);
                 $.ajax({
-                    url: 'action/buy.action.php',
+                    url: '/action/buy.action.php',
                     type: 'POST',
                     data: formData,
                     contentType: false,
