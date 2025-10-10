@@ -712,7 +712,7 @@ if (!$product) {
                                         <div class="bg-emerald-50 rounded-lg p-3 mb-4">
                                             <p class="text-emerald-800 font-semibold text-xs sm:text-sm">Order ID: #${data.order_id}</p>
                                         </div>
-                                        <a href="index.php" class="block w-full bg-emerald-600 text-white py-2 px-4 rounded-lg hover:bg-emerald-700 transition-colors text-sm sm:text-base">
+                                        <a href="/index.php" class="block w-full bg-emerald-600 text-white py-2 px-4 rounded-lg hover:bg-emerald-700 transition-colors text-sm sm:text-base">
                                             Continue Shopping
                                         </a>
                                     </div>
