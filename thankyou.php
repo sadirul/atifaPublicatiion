@@ -35,11 +35,63 @@
     <div class="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center transform transition-all duration-500 scale-100">
         <!-- Animated Checkmark SVG -->
         <div class="mx-auto mb-6 w-24 h-24">
-            <svg class="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="50" r="40" fill="none" stroke="#10B981" stroke-width="4" class="animate-pulse opacity-75" />
-                <polyline points="25,50 42,67 75,33" fill="none" stroke="#10B981" class="checkmark stroke-green-500" stroke-linecap="round" stroke-linejoin="round" />
+            <svg
+                class="w-full h-full"
+                viewBox="0 0 100 100"
+                xmlns="http://www.w3.org/2000/svg">
+                <!-- Animated Circle -->
+                <circle
+                    cx="50"
+                    cy="50"
+                    r="40"
+                    fill="none"
+                    stroke="#10B981"
+                    stroke-width="4"
+                    class="circle" />
+
+                <!-- Checkmark -->
+                <polyline
+                    points="25,50 42,67 75,33"
+                    fill="none"
+                    stroke="#10B981"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="checkmark" />
             </svg>
         </div>
+
+        <style>
+            .circle {
+                stroke-dasharray: 251.2;
+                /* 2 * π * 40 */
+                stroke-dashoffset: 251.2;
+                animation: drawCircle 1s ease-out forwards;
+            }
+
+            @keyframes drawCircle {
+                to {
+                    stroke-dashoffset: 0;
+                }
+            }
+
+            .checkmark {
+                stroke-dasharray: 80;
+                stroke-dashoffset: 80;
+                opacity: 0;
+                animation: drawCheck 0.5s ease-out forwards;
+                animation-delay: 1s;
+                /* starts after the circle is drawn */
+            }
+
+            @keyframes drawCheck {
+                to {
+                    stroke-dashoffset: 0;
+                    opacity: 1;
+                }
+            }
+        </style>
+
 
         <!-- Title with fade-in -->
         <h1 class="text-3xl font-bold text-gray-900 mb-2 opacity-0 animate-[fadeIn_0.5s_ease-in-out_0.3s_forwards]">
