@@ -732,7 +732,7 @@ if (!$product) {
                                     </div>
                                 </div>
                             `);
-                            window.location.href = `/thankyou.php?order_id=${data.order_id}&totalAmount=${data.totalAmount}`;
+                            window.location.href = `/thankyou/${data.order_id}/${data.totalAmount}`;
                         } else {
                             alert(data.message || "Failed to place order. Please try again.");
                         }

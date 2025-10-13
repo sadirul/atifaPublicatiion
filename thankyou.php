@@ -61,7 +61,7 @@
         </div>
 
         <!-- CTA Button with hover animation -->
-        <a href="index.php" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md opacity-0 animate-[fadeIn_0.5s_ease-in-out_1s_forwards]">
+        <a href="/index.php" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md opacity-0 animate-[fadeIn_0.5s_ease-in-out_1s_forwards]">
             Go Home
         </a>
     </div>
