@@ -732,15 +732,7 @@ if (!$product) {
                                     </div>
                                 </div>
                             `);
-                            $('body').append(successMessage);
-                            successMessage.find('a').on('click', function() {
-                                successMessage.remove();
-                            });
-                            setTimeout(() => {
-                                form[0].reset();
-                                $('#quantity').val(1);
-                                updateOrderSummary();
-                            }, 1000);
+                            window.location.href = `/thankyou.php?order_id=${data.order_id}&totalAmount=${data.totalAmount}`;
                         } else {
                             alert(data.message || "Failed to place order. Please try again.");
                         }

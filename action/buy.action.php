@@ -63,6 +63,7 @@ if (isset($_POST['placeOrder']) && !empty($_POST['placeOrder'])) {
         $order_id = generateOrderID();
 
         // Insert order
+        $totalAmount = $product['price'] * ($_POST['qty'] ?? 1);
         $user->query("INSERT INTO orders 
             (name, email, mobile, flat_no, city, po, ps, district, state, pin, near, product_id, qty, status, amount, total_amount, order_id) 
             VALUES 
@@ -82,14 +83,15 @@ if (isset($_POST['placeOrder']) && !empty($_POST['placeOrder'])) {
         $user->bind(":product_id", $product['id']);
         $user->bind(":qty", $_POST['qty'] ?? 1);
         $user->bind(":amount", $product['price']);
-        $user->bind(":total_amount", $product['price'] * ($_POST['qty'] ?? 1));
+        $user->bind(":total_amount", $totalAmount);
         $user->bind(":order_id", $order_id);
 
         if ($user->execute()) {
             echo json_encode([
                 "status" => "success",
                 "message" => "Thank you for your order. You will receive a confirmation SMS and email shortly.",
-                "order_id" => $order_id
+                "order_id" => $order_id,
+                'totalAmount' => $totalAmount,
             ]);
         } else {
             echo json_encode([
