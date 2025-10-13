@@ -377,8 +377,22 @@ if (!$product) {
                                 <input name="name" type="text" required class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-100 focus:border-emerald-500 transition-all" placeholder="Enter your full name">
                             </div>
                             <div>
-                                <label class="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">Mobile Number *</label>
-                                <input name="mobile" type="tel" required class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-100 focus:border-emerald-500 transition-all" placeholder="+91 XXXXX XXXXX">
+                                <label class="block text-xs sm:text-sm font-semibold text-gray-900 mb-2">
+                                    Mobile Number *
+                                </label>
+
+                                <div class="flex items-center border border-gray-200 rounded-lg focus-within:ring-2 focus-within:ring-emerald-100 focus-within:border-emerald-500 transition-all">
+                                    <span class="px-3 text-gray-500 select-none">+91</span>
+                                    <input
+                                        name="mobile"
+                                        type="tel"
+                                        pattern="[0-9]{10}"
+                                        maxlength="10"
+                                        required
+                                        class="w-full px-4 py-3 focus:outline-none rounded-r-lg"
+                                        placeholder="Enter 10-digit number"
+                                        title="Enter a valid 10-digit mobile number" />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -770,7 +784,7 @@ if (!$product) {
             $('input[type="tel"]').on('input', function() {
                 let value = $(this).val().replace(/\D/g, '');
                 if (value.length > 10) value = value.slice(0, 10);
-                if (value.length >= 6) value = value.slice(0, 5) + ' ' + value.slice(5);
+                if (value.length >= 6) value = value.slice(0, 5) + '' + value.slice(5);
                 $(this).val(value);
             });
 
