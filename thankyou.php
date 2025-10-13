@@ -29,6 +29,36 @@
             animation: draw-check 0.8s ease-in-out forwards;
         }
     </style>
+    <style>
+        .circle {
+            stroke-dasharray: 251.2;
+            /* 2 * π * 40 */
+            stroke-dashoffset: 251.2;
+            animation: drawCircle 1s ease-out forwards;
+        }
+
+        @keyframes drawCircle {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .checkmark {
+            stroke-dasharray: 80;
+            stroke-dashoffset: 80;
+            opacity: 0;
+            animation: drawCheck 0.5s ease-out forwards;
+            animation-delay: 1s;
+            /* starts after the circle is drawn */
+        }
+
+        @keyframes drawCheck {
+            to {
+                stroke-dashoffset: 0;
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 
 <body class="bg-gradient-to-br from-green-50 to-blue-50 min-h-screen flex items-center justify-center p-4">
@@ -60,38 +90,6 @@
                     class="checkmark" />
             </svg>
         </div>
-
-        <style>
-            .circle {
-                stroke-dasharray: 251.2;
-                /* 2 * π * 40 */
-                stroke-dashoffset: 251.2;
-                animation: drawCircle 1s ease-out forwards;
-            }
-
-            @keyframes drawCircle {
-                to {
-                    stroke-dashoffset: 0;
-                }
-            }
-
-            .checkmark {
-                stroke-dasharray: 80;
-                stroke-dashoffset: 80;
-                opacity: 0;
-                animation: drawCheck 0.5s ease-out forwards;
-                animation-delay: 1s;
-                /* starts after the circle is drawn */
-            }
-
-            @keyframes drawCheck {
-                to {
-                    stroke-dashoffset: 0;
-                    opacity: 1;
-                }
-            }
-        </style>
-
 
         <!-- Title with fade-in -->
         <h1 class="text-3xl font-bold text-gray-900 mb-2 opacity-0 animate-[fadeIn_0.5s_ease-in-out_0.3s_forwards]">

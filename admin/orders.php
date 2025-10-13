@@ -41,7 +41,7 @@ if (!$user->isLogedin()) {
                             $totalRow = $user->fetchOne()['cnt'];
 
                             // Set pagination: 50 orders per page
-                            $page = $user->pagination(100, $totalRow);
+                            $page = $user->pagination(20, $totalRow);
 
                             // Fetch paginated orders with product info
                             $sql = "SELECT orders.*, products.*, orders.id as order_id, 
